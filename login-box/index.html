@@ -10,8 +10,9 @@
                 box-sizing: border-box;
                 -webkit-box-sizing: border-box;
             }
-            body{
+            div#root{
                 display: flex;
+                -webkit-box-flex: flex;
                 margin: 0;
                 min-height: 100vh;
             }
@@ -27,29 +28,49 @@
                 width: 40vw;
             }
             ul li:last-child{
-                padding-top: 8px
+                padding-top: 8px;
             }
             ul li button{
                 width: 100%;
                 border: 0;
-                padding: 8px 0
+                padding: 8px 0;
+            }
+            .password{
             }
         </style>
     </head>
     <body>
-        <ul>
-            <li>
-                <input placeholder="用户名/账号">
-            </li>
-            <li>
-                <input placeholder="密码">
-            </li>
-            <li>
-                <button>登录</button>
-            </li>
-        </ul>
-        <script>
-            
+         <!-- 这边的 id="example" 的 <div> 为 React Component 要插入的地方 -->
+        <div id="root"></div>
+        <!-- 以下引入 react.js, react-dom.js（react 0.14 后将 react-dom 从 react 核心分离，更符合 react 跨平台抽象化的定位）以及 babel-core browser 版 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+        <script type="text/babel">
+            function clickHandler() {
+                    debugger
+                if(element.props.childen[0] > 3){
+                    console.log('请输入正确的账号');
+                }
+            }
+            const element = (
+                <ul>
+                    <li>
+                        <input placeholder="用户名/账号" />
+                    </li>
+                    <li>
+                        <input maxLength="12" placeholder="密码"/>
+                    </li>
+                    <li>
+                        <button onClick = {() => clickHandler()}>登录</button>
+                    </li>
+                </ul>
+            );
+
+            ReactDOM.render(
+                element,
+                document.getElementById('root')
+            );
         </script>
     </body>
 </html>
