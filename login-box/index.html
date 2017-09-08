@@ -16,26 +16,25 @@
                 margin: 0;
                 min-height: 100vh;
             }
-            ul{
+            form{
                 margin:auto;
-                list-style: none
             }
-            ul li input{
+            form input{
+                display: block;
+                width: 40vw;
+                padding: 8px 0;
                 border: 0;
                 border-bottom: 1px solid #E5E5E5;
-                padding: 8px 0;
                 margin-bottom: 0;
-                width: 40vw;
             }
-            ul li:last-child{
+            form input:last-child{
                 padding-top: 8px;
             }
-            ul li button{
+            form button{
                 width: 100%;
                 border: 0;
+                margin-top: 8px;
                 padding: 8px 0;
-            }
-            .password{
             }
         </style>
     </head>
@@ -54,19 +53,12 @@
                 }
             }
             const element = (
-                <ul>
-                    <li>
-                        <input placeholder="用户名/账号" />
-                    </li>
-                    <li>
-                        <input maxLength="12" placeholder="密码"/>
-                    </li>
-                    <li>
-                        <button onClick = {() => clickHandler()}>登录</button>
-                    </li>
-                </ul>
+                <form>
+                    <input placeholder="用户名/账号" />
+                    <input maxLength="12" placeholder="密码"/>
+                    <button onClick = {() => clickHandler()}>登录</button>
+                </form>
             );
-
             ReactDOM.render(
                 element,
                 document.getElementById('root')
