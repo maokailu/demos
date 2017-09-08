@@ -27,14 +27,17 @@
                 border-bottom: 1px solid #E5E5E5;
                 margin-bottom: 0;
             }
-            form input:last-child{
+            form input:nth-last-child(2){
                 padding-top: 8px;
             }
-            form button{
+            form input:last-child{
+                display: block;
                 width: 100%;
                 border: 0;
                 margin-top: 8px;
                 padding: 8px 0;
+                background-color: #FFA500;
+                color:white;
             }
         </style>
     </head>
@@ -46,21 +49,33 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
         <script type="text/babel">
-            function clickHandler() {
-                    debugger
-                if(element.props.childen[0] > 3){
-                    console.log('请输入正确的账号');
+        class Login extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    name: ''
+                };
+            }
+
+            handleNameChange = event => {
+                this.setState({name: event.target.value});
+            }
+            handleSubmit = event => {
+                alert('Your name is: ' + this.state.name);
+                event.preventDefault();
+            }
+            render() {
+                return (
+                    <form onSubmit = {this.handleSubmit}>
+                        <input placeholder="用户名/账号" onChange={this.handleNameChange}/>
+                        <input maxLength="12" placeholder="密码"/>
+                        <input type="submit" value="登录" />
+                    </form>
+                    );
                 }
             }
-            const element = (
-                <form>
-                    <input placeholder="用户名/账号" />
-                    <input maxLength="12" placeholder="密码"/>
-                    <button onClick = {() => clickHandler()}>登录</button>
-                </form>
-            );
             ReactDOM.render(
-                element,
+                <Login />,
                 document.getElementById('root')
             );
         </script>
