@@ -52,22 +52,32 @@
             constructor(props) {
                 super(props);
                 this.state = {
-                    name: ''
+                    name: '',
+                    password: ''
                 };
             }
 
             handleNameChange = event => {
                 this.setState({name: event.target.value});
             }
+            handlePasswordChange = event => {
+                this.setState({password: event.target.value});
+            }
             handleSubmit = event => {
-                alert('Your name is: ' + this.state.name);
+                if(!this.state.name){
+                    alert('请输入账号');
+                }else if(!this.state.password){
+                    alert('请输入密码');
+                }else{    
+                    alert('Your name is: ' + this.state.name);
+                }
                 event.preventDefault();
             }
             render() {
                 return (
                     <form onSubmit = {this.handleSubmit}>
-                        <input placeholder="用户名/账号" onChange={this.handleNameChange}/>
-                        <input maxLength="12" placeholder="密码"/>
+                        <input placeholder="用户名/账号" onChange={this.handleNameChange} />
+                        <input maxLength="12" placeholder="密码" onChange={this.handlePasswordChange} />
                         <input type="submit" value="登录" />
                     </form>
                     );
