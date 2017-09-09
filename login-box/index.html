@@ -42,9 +42,7 @@
         </style>
     </head>
     <body>
-         <!-- 这边的 id="example" 的 <div> 为 React Component 要插入的地方 -->
         <div id="root"></div>
-        <!-- 以下引入 react.js, react-dom.js（react 0.14 后将 react-dom 从 react 核心分离，更符合 react 跨平台抽象化的定位）以及 babel-core browser 版 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
@@ -74,7 +72,6 @@
                     );
                 }
             }
-            // todo:添加删除小叉，提交验证若为空浮层提示
             ReactDOM.render(
                 <Login />,
                 document.getElementById('root')
