@@ -1,4 +1,4 @@
-### 前端开发中常用 `js&&css` 效果
+### 前端开发中常用插件
 
 #### 目录概要
 
@@ -9,7 +9,8 @@
 	├─style.scss 样式
 ├─loading 移动端常用加载动画
 	├─loading.html
-└─weChat H5 flex+flipsnap仿微信
+├─login-box 登录注册框
+├─tab-swiper flex+flipsnap仿微信
     ├─flipsnap 一个轻量的tab-swiper插件
     ├─index.html
     │─protrait 头像图片
