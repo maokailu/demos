@@ -9,6 +9,7 @@ export default class Testitem extends Component {
         var X = 0; // 移动距离
         var objX = 0; // 目标对象位置
         window.addEventListener('touchstart', event => {
+            // 事件委托根据列表项状态监听处理左滑或右滑事件
             event.preventDefault();
             var obj = event.target.parentNode;
             if (obj.className === 'style__item-box___1lP8y') {
