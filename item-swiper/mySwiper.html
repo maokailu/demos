@@ -53,13 +53,19 @@
             var moveX; //滑动时的位置
             var X = 0; //移动距离
             var objX = 0; //目标对象位置
+
+            // 对每个box进行事件委托
             window.addEventListener('touchstart', function(event) {
                 var obj = event.target.parentNode;
                 if (obj.className == "box") {
                     initX = event.targetTouches[0].pageX;
+                    // 判断列表项此时是初始状态还是左滑后状态
                     objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
+                    console.log("touchstart:"+objX);
                 }
                 if (objX == 0) {
+                    // move事件使滑动跟随手势
+                    // 初始状态左滑
                     window.addEventListener('touchmove', function(event) {
                         var obj = event.target.parentNode;
                         if (obj.className == "box") {
@@ -78,6 +84,7 @@
                         }
                     });
                 } else if (objX < 0) {
+                    // 左滑后右滑
                     window.addEventListener('touchmove', function(event) {
                         var obj = event.target.parentNode;
                         if (obj.className == "box") {
@@ -90,7 +97,7 @@
                                     r = 0;
                                     obj.style.WebkitTransform = "translateX(" + r + "px)";
                                 }
-                            } else { //向左滑动
+                            } else {
                                 obj.style.WebkitTransform = "translateX(" + -160 + "px)";
                             }
                         }
@@ -99,11 +106,12 @@
 
             })
             window.addEventListener('touchend', function(event) {
+                // 总滑动距离决定最后状态是滑出或还原
                 event.preventDefault();
                 var obj = event.target.parentNode;
                 if (obj.className == "box") {
                     objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
-                    if (objX > -150) {
+                    if (objX > -100) {
                         obj.style.WebkitTransform = "translateX(" + 0 + "px)";
                         objX = 0;
                     } else {
@@ -111,6 +119,7 @@
                         objX = -160;
                     }
                 }
+                console.log("touchend:"+objX);
             })
     </script>
  </html>
