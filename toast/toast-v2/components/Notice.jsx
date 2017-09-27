@@ -5,11 +5,7 @@ import '../style/index.scss';
 class Notice extends React.Component {
     static propTypes = {
         duration: React.PropTypes.number, // Notice显示时间
-        content: React.PropTypes.any, // Notice显示的内容
-        onClose: React.PropTypes.func // 显示结束回调
-    };
-    static defaultProps = {
-        duration: 1000
+        content: React.PropTypes.any // Notice显示的内容
     };
     componentDidMount() {
         if (this.props.duration > 0) {
@@ -19,24 +15,19 @@ class Notice extends React.Component {
         }
     }
     componentWillUnmount() {
-        // 当有意外关闭的时候 清掉定时器
         this.clearCloseTimer();
     }
-    clearCloseTimer() {
+    clearCloseTimer= () => {
         if (this.closeTimer) {
             clearTimeout(this.closeTimer);
             this.closeTimer = null;
         }
     }
-    close() {
-        this.clearCloseTimer();
-        const _this = this;
-        this.timer = setTimeout(() => {
-            if (this.props.onClose) {
-                this.props.onClose();
-            }
-            clearTimeout(_this.timer);
-        }, 300);
+    close= () => {
+        // 指定时间后，一个一个一下全部删除
+        setTimeout(() => {
+            this.props.onClose();
+        }, 0);
     }
     render() {
         return (
@@ -48,5 +39,4 @@ class Notice extends React.Component {
         );
     }
 }
-
 export default Notice;

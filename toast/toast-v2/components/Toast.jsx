@@ -1,38 +1,26 @@
 
-import React from 'react';
-import classNames from 'classnames';
+// 生成Notification单例并提供销毁方法
 import Notification from './Notification';
 let newNotification;
-
-// 获得一个Notification
 const getNewNotification = () => {
-    // 单例
+    // 单例 保持页面始终只有一个Notification
     if (!newNotification) {
         newNotification = Notification.reWrite();
     }
-
     return newNotification;
 };
-
-// 完成对Notification的改变
-const notice = (content,duration = 100) => {
-    let notificationInstance = getNewNotification();
-
-    notificationInstance.notice({
+// 调用Notification的方法添加Notice
+const addNotice = (content, duration) => {
+    const notification = getNewNotification();
+    notification.addNotice({
         duration,
-        content:
-            <div className={
-                classNames(['zby-toast-box'])
-            }>
-                <div className="zby-toast-content">{content}</div>
-            </div>
+        content
     });
 };
-
 export default {
     // 显示
     show(content, duration) {
-        return notice(content,duration);
+        return addNotice(content, duration);
     },
     // 销毁
     hide() {

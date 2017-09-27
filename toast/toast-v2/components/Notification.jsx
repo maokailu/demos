@@ -1,94 +1,79 @@
 
+// 管理多个Notice
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Notice from './Notice';
-
+// 将多个Notice一起添加到页面中
 class Notification extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
-            notices: [] // 存储当前有的notices
-        }
+            notices: [] // 存储notices
+        };
     }
-    add (notice) {
-        // 添加notice
-        // 创造一个不重复的key
-        const {notices} = this.state;
+    // 添加一个不重复的Notice
+    add(notice) {
+        const notices = this.state.notices;
         const key = notice.key ? notice.key : notice.key = getUuid();
-        const temp = notices.filter((item) => item.key === key).length;
-
-        if(!temp){
-            // 不存在重复的 添加
+        const temp = notices.filter(item => item.key === key).length;
+        if (!temp) {
             notices.push(notice);
             this.setState({
                 notices: notices
             });
         }
     }
-    remove (key) {
-        // 根据key删除对应
+    // 根据key删除对应Notice
+    remove= key => {
         this.setState(previousState => {
             return {
-                notices: previousState.notices.filter(notice => notice.key !== key),
+                notices: previousState.notices.filter(notice => notice.key !== key)
             };
         });
     }
-    getNoticeDOM () {
-        const _this = this;
-        const {notices} = this.state;
-        let result = [];
-
-        notices.map((notice)=>{
-            const closeCallback = () => {
-                _this.remove(notice.key);
-            };
-
+    getNoticeDOM = () => {
+        const notices = this.state.notices;
+        const result = [];
+        notices.map(notice => {
             result.push(
-                <Notice key={notice.key} {...notice} onClose={closeCallback} />
+                <Notice key={notice.key} {...notice} onClose={() => {this.remove(notice.key);}} />
             );
         });
-
         return result;
     }
-    render () {
+    render() {
         const noticesDOM = this.getNoticeDOM();
-
         return (
             <div>
                 {noticesDOM}
             </div>
-        )
+        );
     }
 }
-
-// 统计notice总数 防止重复
-let noticeNumber = 0;
-
 // 生成唯一的id
+let count = 0;
 const getUuid = () => {
-    return "notification-" + new Date().getTime() + "-" + noticeNumber++;
+    return 'notification-' + new Date().getTime() + '-' + count++;
 };
-
-// 该方法方便Notification组件动态添加到页面中和重写
-Notification.reWrite = function (properties) {
+// 该方法方便Notification组件动态添加到页面中
+Notification.reWrite = function(properties) {
     const { ...props } = properties || {};
-
     let div;
-
     div = document.createElement('div');
     document.body.appendChild(div);
-
     const notification = ReactDOM.render(<Notification {...props} />, div);
-
     return {
-        notice(noticeProps) {
+        addNotice(noticeProps) {
             notification.add(noticeProps);
         },
         removeNotice(key) {
             notification.remove(key);
         },
+        destroy() {
+            ReactDOM.unmountComponentAtNode(div);
+            document.body.removeChild(div);
+        },
         component: notification
-    }
+    };
 };
-
 export default Notification;
