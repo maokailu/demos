@@ -1,17 +1,23 @@
 // Greeter.js
 import styles from './Greeter.css';//导入
 import React, {Component} from 'react';
-var config = require('./config.json');
+// import Toast from './toast/';
 class Greeter extends Component{
+  constructor(props) {
+      super(props);
+      this.state = {
+      };
+  }
+  tips(){
+      console.log('x');
+  }
   render() {
     return (
       <div className={styles.root}>
-        {config.greetText}
+        {<div onClick={this.tips}>Click Me!</div>}
       </div>
     );
   }
 }
 
-export default Greeter
-
-  
+export default Greeter;
