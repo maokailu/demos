@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     devtool: 'eval-source-map',
     entry:  __dirname + "/app/main.js",//已多次提及的唯一入口文件
@@ -24,7 +25,7 @@ module.exports = {
               exclude: /node_modules/
           },
           {
-              test: /(\.scss|\.css)$/,
+              test: /\.css$/,
               use: [
                   {
                       loader: "style-loader"
@@ -37,7 +38,16 @@ module.exports = {
                     loader: "postcss-loader"
                   }
               ]
-          }
+          },{
+            test: /\.scss$/,
+            use: [{
+                loader: "style-loader" // creates style nodes from JS strings 
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS 
+            }, {
+                loader: "sass-loader" // compiles Sass to CSS 
+            }]
+        }
       ]
   },
   plugins: [
@@ -45,6 +55,6 @@ module.exports = {
       new HtmlWebpackPlugin({
           template: __dirname + "/app/index.tmpl.html"//new 一个这个插件的实例，并传入相关的参数
       }),
-      new webpack.HotModuleReplacementPlugin()//热加载插件
+      new webpack.HotModuleReplacementPlugin(),//热加载插件
   ]
 }

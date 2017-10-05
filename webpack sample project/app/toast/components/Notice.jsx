@@ -1,12 +1,8 @@
 
 import React from 'react';
-import '../style/index.scss';
+import styles from '../style/index.css';
 
 class Notice extends React.Component {
-    static propTypes = {
-        duration: React.PropTypes.number, // Notice显示时间
-        content: React.PropTypes.any // Notice显示的内容
-    };
     componentDidMount() {
         if (this.props.duration > 0) {
             this.closeTimer = setTimeout(() => {
@@ -31,8 +27,8 @@ class Notice extends React.Component {
     }
     render() {
         return (
-            <div styleName="toast-container">
-                <div styleName="toast">
+            <div className={styles.container}>
+                <div className={styles.toast}>
                     {this.props.content}
                 </div>
             </div>

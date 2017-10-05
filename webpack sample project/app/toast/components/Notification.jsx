@@ -2,7 +2,7 @@
 // 管理多个Notice
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Notice from './Notice';
+import Notice from './Notice.jsx';
 // 将多个Notice一起添加到页面中
 class Notification extends React.Component {
     constructor(props) {

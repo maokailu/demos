@@ -1,6 +1,6 @@
 
 // 生成Notification单例并提供销毁方法
-import Notification from './Notification';
+import Notification from './Notification.jsx';
 let newNotification;
 const getNewNotification = () => {
     // 单例 保持页面始终只有一个Notification
