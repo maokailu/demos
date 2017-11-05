@@ -48,4 +48,4 @@ console.log(someResult);
 var filterResult = numbers.filter(function(item,index,array){
     return (item>2);
 })
-console.log(filterResult);
+console.log(filterResult)
