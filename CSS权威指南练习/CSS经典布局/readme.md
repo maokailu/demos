@@ -87,5 +87,15 @@
             }
         .box div{margin: auto;}
 
+https://www.cnblogs.com/2050/p/3392803.html
 二.CSS各种布局
 https://www.zhihu.com/search?type=content&q=css%E5%B8%83%E5%B1%80
+
+三.清除浮动的几种方法
+https://www.zhihu.com/search?type=content&q=%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8
+
+四.利用Border绘制三角形
+http://www.jb51.net/article/42513.htm
+
+五.BFC
+http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html
