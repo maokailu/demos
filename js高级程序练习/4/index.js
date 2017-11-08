@@ -15,7 +15,7 @@ var person1 = {
 }
 
 //5.2
-var colors = new Array();
+var colors= new Array();
 var colors = new Array(20);
 var colors = new Array("red","blue","green");
 

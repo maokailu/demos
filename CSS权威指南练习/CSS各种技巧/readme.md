@@ -1,4 +1,5 @@
 一.居中
+https://www.cnblogs.com/2050/p/3392803.html 
 
 	* 水平居中
 
@@ -87,7 +88,6 @@
             }
         .box div{margin: auto;}
 
-https://www.cnblogs.com/2050/p/3392803.html
 二.CSS各种布局
 https://www.zhihu.com/search?type=content&q=css%E5%B8%83%E5%B1%80
 
