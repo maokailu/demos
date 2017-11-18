@@ -1,4 +1,4 @@
-p{
+/* div.text p{
     background: orange;
     color:green;
     padding:10px;
@@ -7,7 +7,7 @@ p{
     margin-right:auto;
     margin-left:10px;
 }
-div{
+div.text{
     background: blue;
     width:400px;
 }
@@ -16,4 +16,20 @@ span.raise{
 }
 span.lower{
     vertical-align: sub;
+} */
+
+p.textIndent1{
+    text-indent: 2em;
+    width:400px;
+}
+h1.m{
+    text-align:center;
+    margin-top:20px;
+    width:400px;
+}
+
+p.textIndent2{
+    text-indent: -2em;
+    width:400px;
+    padding-left:2em;
 }
