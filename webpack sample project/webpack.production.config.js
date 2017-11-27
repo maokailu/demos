@@ -24,17 +24,21 @@ module.exports = {
             },
             exclude: /node_modules/
         }, {
-            test: /\.css$/,
+            test: /(\.css|\.scss)$/,
             use: ExtractTextPlugin.extract({
                 fallback: "style-loader",
-                use: [{
-                    loader: "css-loader",
-                    options: {
-                        modules: true
+                use: [
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true
+                        }
+                    }, {
+                        loader: "sass-loader" // compiles Sass to CSS 
+                    }, {
+                        loader: "postcss-loader"
                     }
-                }, {
-                    loader: "postcss-loader"
-                }],
+                ],
             })
         }]
     },
@@ -43,8 +47,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: __dirname + "/app/index.tmpl.html" //new 一个这个插件的实例，并传入相关的参数
         }),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin(),
-        new ExtractTextPlugin("style.css")
+        new webpack.optimize.OccurrenceOrderPlugin(), // 为组件分配ID，通过这个插件webpack可以分析和优先考虑使用最多的模块，并为它们分配最小的ID
+        new webpack.optimize.UglifyJsPlugin(), // 压缩JS代码
+        new ExtractTextPlugin("style.css") // 分离CSS和JS文件
     ],
 };

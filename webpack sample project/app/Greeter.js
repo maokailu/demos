@@ -2,15 +2,13 @@
 import React, {Component} from 'react';
 import Toast from './toast/index.jsx';
 import SassExercise from './sass-exercise/index.jsx';
-import './Greeter.scss';//使用require导入css文件
+import './Greeter.scss';
 
 class Greeter extends Component{
   constructor(props) {
       super(props);
-      this.state = {
-      };
   }
-  tips=()=>{
+  tips = () => {
       Toast.show('你好！', 1000);
   }
   render() {
