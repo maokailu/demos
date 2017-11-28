@@ -17,29 +17,22 @@ module.exports = {
     },
     module: {
       rules: [
-          {
-              test: /(\.jsx|\.js)$/,
-              use: {
-                  loader:  "babel-loader"
-              },
-              exclude: /node_modules/
-          },
-          {
-              test: /(\.css|\.scss)$/,
-              use: [
-                  {
-                      loader: "style-loader"
-                  }, {
-                      loader: "css-loader",
-                      options: {
-                          modules: true
-                      }
-                  }, {
-                    loader: "sass-loader" // compiles Sass to CSS 
-                  }, {
-                    loader: "postcss-loader"
-                  }
-              ]
+        {
+            test: /(\.jsx|\.js)$/,
+            use: {
+                loader:  "babel-loader"
+            },
+            exclude: /node_modules/
+        },
+        {
+            test: /\.scss$/,
+            use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "sass-loader" // compiles Sass to CSS
+            }]
         }
       ]
   },

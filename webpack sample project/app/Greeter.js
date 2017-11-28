@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import Toast from './toast/index.jsx';
 import SassExercise from './sass-exercise/index.jsx';
+import Search from './search/index.jsx';
 import './Greeter.scss';
 
 class Greeter extends Component{
@@ -14,10 +15,10 @@ class Greeter extends Component{
   render() {
     return (
       <div>
-        <div className="root">
+        {/* <div className="root">
           {<div onClick={this.tips}>点我出现浮层</div>}
-        </div>
-        <SassExercise />
+        </div> */}
+        <Search />
       </div>
     );
   }
