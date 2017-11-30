@@ -16,6 +16,15 @@
                 flex:1;
             }
     2).绝对定位
+            .header{
+                height: 49px;
+            }
+            .main{
+                position: absolute;
+                top: 49px;
+                left: 0;
+                right: 0;
+            }
     3)calc
 二.水平布局
 1.左右部分定宽，中间部分自适应

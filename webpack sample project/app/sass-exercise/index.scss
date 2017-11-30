@@ -113,4 +113,7 @@ $gutter-width: 10px;
 #sidebar { width: grid-width(5); }
 
 // sass内置函数：http://sass-lang.com/documentation/Sass/Script/Functions.html
-// mixin和extend如何选择：1.需要传递参数，选择mixin;2.一组相关元素使用extend，不仅仅局限相关元素使用mixin更好；3.extend编译后的CSS是DRY形式的；（先考虑序号在前的）
+// mixin和extend如何选择：
+// 1.需要传递参数，选择mixin;
+// 2.一组相关元素使用extend，不仅仅局限相关元素使用mixin更好；
+// 3.extend编译后的CSS是DRY形式的；（先考虑序号在前的）
