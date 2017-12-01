@@ -1,7 +1,7 @@
 
 二.git基础
     1.工作区（本地git仓库某次快照） 暂存区(添加内容到下次提交中) 本地git仓库
-        git add(暂存或者追踪)         git commit(提交)
+                    git add(暂存或者追踪)         git commit(提交)
     2.检查当前文件状态：git status
                     git status -s (状态简览)
     3.跟踪新文件：git add
