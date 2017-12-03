@@ -1,8 +1,8 @@
 // Greeter.js
 import React, {Component} from 'react';
-import Toast from './toast/index.jsx';
-import SassExercise from './sass-exercise/index.jsx';
-import Search from './search/index.jsx';
+// import Toast from './toast/index.jsx';
+import JsExercise from './js-exercise/api.jsx';
+// import Search from './search/index.jsx';
 // import List from './list/index.jsx';
 import './Greeter.scss';
 
@@ -19,8 +19,9 @@ class Greeter extends Component{
         {/* <div className="root">
           {<div onClick={this.tips}>点我出现浮层</div>}
         </div> */}
-        <Search />
+        {/* <Search /> */}
         {/* <List /> */}
+        <JsExercise />
       </div>
     );
   }

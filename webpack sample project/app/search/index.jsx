@@ -6,84 +6,9 @@ class Search extends React.Component {
     // 定义属性
     // 定义方法
     componentDidMount(){
-        document.cookie="name1=3";
-        document.cookie="name2=4";
-        // 用promise封装一个ajax对象
-        const getJSON = function(url) {
-            const promise = new Promise(function(resolve, reject){
-                const handler = function() {
-                if (this.readyState !== 4) {
-                    return;
-                }
-                if (this.status === 200) {
-                    resolve(this.response);
-                } else {
-                    reject(new Error(this.statusText));
-                }
-                };
-                const client = new XMLHttpRequest();
-                client.open("GET", url);
-                client.onreadystatechange = handler;
-                client.responseType = "json";
-                client.setRequestHeader("Accept", "application/json");
-                client.send();
-            
-            });
-            return promise;
-        };
-        getJSON('http://freegeoip.net/json/?callback=handleResponse').then(function(json) {
-            console.log('Contents: ' + json);
-        }, function(error) {
-            console.error('出错了', error);
-        });
-        // 对象委托
-        var LoginController = {
-            errors:["LOGIN1","LOGIN2"],
-            getUser(){
-                console.log("loginUser");
-            },
-            getPassword(){
-                console.log("loginPassword");
-            }
-        }
-        var AuthController = {
-            en: ["haha"],
-            checkAuth(){
-                //...
-            },
-            server(){
-                console.log("SERVER");  
-            }
-        }
-        // 现在把AuthController关联到LoginController
-        Object.setPrototypeOf(AuthController, LoginController);
-        console.log(AuthController.en, AuthController.errors);
-        AuthController.getUser();
-        AuthController.server();
-
-        // 闭包应用场景
-        function wait(message){
-            // setTimeout(function time(){
-            //     console.log(message);
-            // }, 1000)
-            console.log(me);
-            var me = "me";
-            function time(me){
-                console.log("limiande"+me);
-            }
-            time(me);
-            return time;
-        }
-        wait("Hello, closure");
-        wait("Hello, closure");
     }
     // 事件绑定的函数
     search= (e) => {
-        console.log(this);
-        console.log(e);
-        console.log(e.currentTarget);
-        console.log(e.target);
-        console.log(this);
     }
     render() {
         return (
