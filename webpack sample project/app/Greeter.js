@@ -1,18 +1,19 @@
 // Greeter.js
-import React, {Component} from 'react';
 // import Toast from './toast/index.jsx';
-import JsExercise from './js-exercise/api.jsx';
+// import Js from './js/api.jsx';
 // import Search from './search/index.jsx';
 // import List from './list/index.jsx';
-import './Greeter.scss';
+// import Clock from './react/clock.jsx';
+import ActionLink from './react/actionLink.jsx';
+// import './Greeter.scss';
 
 class Greeter extends Component{
-  constructor(props) {
-      super(props);
+  constructor() {
+      super();
   }
-  tips = () => {
-      Toast.show('你好！', 1000);
-  }
+  // tips = () => {
+  //     Toast.show('你好！', 1000);
+  // }
   render() {
     return (
       <div>
@@ -21,10 +22,14 @@ class Greeter extends Component{
         </div> */}
         {/* <Search /> */}
         {/* <List /> */}
-        <JsExercise />
+        {/* <Js /> */}
+        {/* <Clock />
+        <Clock />
+        <Clock /> */}
+
+        <ActionLink />
       </div>
     );
   }
 }
-
 export default Greeter;

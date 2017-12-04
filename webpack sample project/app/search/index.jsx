@@ -4,11 +4,23 @@ import  './style.scss';
 
 class Search extends React.Component {
     // 定义属性
+    constructor(props){
+        super(props);
+        this.state={
+            currentTab: ''
+        }
+    }
     // 定义方法
     componentDidMount(){
     }
     // 事件绑定的函数
-    search= (e) => {
+    search= () => {
+        console.log(event);
+    }
+    tabToggle=() =>{
+        console.log(event);
+        // 获得它的索引
+        // 改变它的样式
     }
     render() {
         return (
@@ -25,7 +37,7 @@ class Search extends React.Component {
                     </div>
                     <div className="search-box">
                         <div className="tab">
-                            <div>Round Trip</div>
+                            <div onClick={this.tabToggle}>Round Trip</div>
                             <div>One-way</div>
                         </div>
                         <div className="search-city">
@@ -51,7 +63,11 @@ class Search extends React.Component {
                         <div className="person">
                             <div>
                                 <div className="tip">Passenger(Adults)</div>
-                                <div className="info">- 1 +</div>
+                                <div className="info">
+                                    <span className="minus">-</span>
+                                    <span className="num">9</span>
+                                    <span className="add">+</span>
+                                 </div>
                             </div>
                             <div>
                                 <div className="tip">Class</div>
