@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1>缩进和水平对齐</h1>
+        <h2>一.text-indent属性</h2>
+        <p class="textIndent1">text-indent属性为正值3em时。该段落为400px宽，文本到达制定宽度之后将自动换行。为了凑字数，看起来更像段落。</p>
+        <p class="textIndent2">text-indent属性为负值时可实现悬挂缩进效果,并且为了避免超出做左边界，再设置一个外边距或内边距。</p>        
+        <h1>垂直对齐</h1>
+        <h2>一.行高</h2>
+        <h3>1.构造文本行</h3>
+        <p class="cl1">A line box containing some text and elements.</p>
+        备注：检查元素显示的是行框，背景色也加在了行框上，在这里默认为font-size的1.3倍。
+        <h3>2.指定line-height值</h3>
+        <div class="cl2">
+            <p>This paragraph inherits a 'line-height' of 14px from the div,as well as a 'font-size' of 13px.</p>                
+            <p class="cl2-1">This paragraph has a 'line-height' of 19.5px(13 * 1.5), so it will have slightly more line-height than usual.</p>
+            <p class="cl2-2">This paragraph has a 'line-height' of 19.5px(10 * 150%), so it will have slightly more line-height than usual.</p>
+        </div>
+        <h3>3.行高和继承</h3>
+        <div class="cl3">
+            <div class="cl3-1">
+                <p class="cl3-1-1">This paragraph's 'font-size' is 18px, but the inherited 'line-height' values is only 10px. This may cause the lines of text to overlap each other by a small amount.</p>
+            </div>
+        </div>
+        <div class="cl3">
+            <div class="cl3-2">
+                <p class="cl3-1-1">This paragraph's 'font-size' is 18px, and since the 'line-height' set for the parent div is 1.5, the 'line-height' for this paragraph is 27px(18 * 1.5).</p>
+            </div>
+        </div>
+        <h2>二.垂直对齐文本</h2>
+        <h3>1.基线对齐</h3>
+        <p>This paragraph contains <span class="raise">superscripted</span> and <span class="lower">subscripted</span> text.</p>
+        <h3>2.底端对齐</h3>
+        <p>This paragraph contains <span class="bottom">bottom</span> text.</p>
+        <h3>3.顶端对齐</h3>
+        <p>This paragraph contains <span class="top">top</span> text.</p>
+        <h3>4.居中对齐</h3>
+        <p>This paragraph contains <span class="middle">middle</span> text.</p>
+    </body>
+</html>
