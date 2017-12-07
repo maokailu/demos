@@ -1,17 +1,11 @@
 import React from 'react';
-import Search from './search/index.jsx';
-import Tab from './search/tab/tab.jsx';
 import './Greeter.scss';
+import Arrow from "./components/Arrow/arrow.jsx"
 
 class Greeter extends React.Component{
-  constructor() {
-      super();
-      this.state={
-      }
-  }
   render() {
     return (
-      <Tab />
+      <Arrow />
     );
   }
 }
