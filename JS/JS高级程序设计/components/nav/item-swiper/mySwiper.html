@@ -72,20 +72,22 @@
                 }
                 if (objX == 0) {
                     // move事件使滑动跟随手势
-                    // 初始状态左滑
+                    // 从初始状态向左滑
                     window.addEventListener('touchmove', function(event) {
                         var obj = event.target.parentNode;
                         if (obj.className == "box") {
                             moveX = event.targetTouches[0].pageX;
                             X = moveX - initX;
                             if (X >= 0) {
+                                // 往右滑
                                 obj.style.WebkitTransform = "translateX(" + 0 + "px)";
                             } else if (X < 0) {
+                                // 跟随手势左滑
                                 var l = Math.abs(X);
                                 obj.style.WebkitTransform = "translateX(" + -l + "px)";
                                 if (l > 160) {
-                                    l = 160;
-                                    obj.style.WebkitTransform = "translateX(" + -l + "px)";
+                                    // 已完全滑出
+                                    obj.style.WebkitTransform = "translateX(" + -160 + "px)";
                                 }
                             }
                         }
@@ -100,11 +102,13 @@
                             if (X >= 0) {
                                 var r = -160 + Math.abs(X);
                                 obj.style.WebkitTransform = "translateX(" + r + "px)";
+                                console.log(r)
                                 if (r > 0) {
-                                    r = 0;
-                                    obj.style.WebkitTransform = "translateX(" + r + "px)";
+                                    // 已完全还原
+                                    obj.style.WebkitTransform = "translateX(" + 0 + "px)";
                                 }
                             } else {
+                                // 往左滑
                                 obj.style.WebkitTransform = "translateX(" + -160 + "px)";
                             }
                         }
@@ -115,15 +119,18 @@
             })
             window.addEventListener('touchend', function(event) {
                 window.touchend=null;
-                // 总滑动距离决定最后状态是滑出或还原
+                // 总滑动距离决定最后状态是滑出或初始
                 event.preventDefault();
                 var obj = event.target.parentNode;
                 if (obj.className == "box") {
+                    // 使其完全划出和还原的分界点
                     objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
-                    if (objX > -100) {
+                    if (objX > -80) {
+                        // 还原
                         obj.style.WebkitTransform = "translateX(" + 0 + "px)";
                         objX = 0;
                     } else {
+                        // 滑出
                         obj.style.WebkitTransform = "translateX(" + -160 + "px)";
                         objX = -160;
                     }
