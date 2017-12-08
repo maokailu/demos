@@ -52,7 +52,7 @@
                 <div class="left">
                     左滑出现删除按钮
                 </div>
-                <div class="right">删除</div>
+                <div id="right" class="right">删除</div>
             </div>
         </div>
     </body>
@@ -61,12 +61,12 @@
             var moveX; //滑动时的位置
             var X = 0; //移动距离
             var objX = 0; //目标对象位置
-
             // 对每个box进行事件委托
             window.addEventListener('touchstart', function(event) {
                 var obj = event.target.parentNode;
                 if (obj.className == "box") {
                     initX = event.targetTouches[0].pageX;
+                    // 能变成一个通用变量吗 哪种好？
                     // 判断列表项此时是初始状态还是左滑后状态
                     objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
                 }
@@ -118,9 +118,8 @@
                 window.touchmove=null;
             })
             window.addEventListener('touchend', function(event) {
-                window.touchend=null;
                 // 总滑动距离决定最后状态是滑出或初始
-                event.preventDefault();
+                // event.preventDefault();
                 var obj = event.target.parentNode;
                 if (obj.className == "box") {
                     // 使其完全划出和还原的分界点
@@ -137,12 +136,10 @@
                 }
             })
             window.addEventListener('click', function(event){
-                window.onclick=null;
-                var obj = event.target.parentNode;
+                var obj = event.target;
                 if(obj.className == "right"){
-                    console.log("删除成功")
+                    alert("删除成功")
                 }
             })
-            // 无法触发点击事件 与滑动有关？
     </script>
  </html>

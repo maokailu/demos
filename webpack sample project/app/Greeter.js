@@ -1,11 +1,11 @@
 import React from 'react';
 import './Greeter.scss';
-import Arrow from "./components/Arrow/arrow.jsx"
+import PullView from "./components/PullView/pullView.jsx"
 
 class Greeter extends React.Component{
   render() {
     return (
-      <Arrow />
+      <PullView />
     );
   }
 }

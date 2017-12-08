@@ -1,0 +1,58 @@
+.header{
+    height: 42px;
+    background: rgb(63, 130, 255);
+    display: flex;
+    .info{
+        flex: 1;
+        height: 42px;
+        line-height: 42px;
+        color: #fff;
+        opacity: .7;
+        font-size: .5rem;
+    }
+    .filter{
+        display: flex;
+        div{
+            padding: 0 16px;
+        }
+    }
+}
+.main{
+    position: absolute;
+    top: 42px;
+    left: 0;
+    right: 0;
+    background: rgb(235, 233, 233);
+    .item{
+        margin: 5px;
+        padding: 5px 12px;
+        background: white;
+        .row2{
+            display: flex;
+            .left{
+                display: flex;
+                div{
+                    width: 55px;
+                    margin-right: 8px;
+                    .time{
+                        font-size: 20px;
+                        text-align: center;
+                    }
+                    .airport{
+                        color: #999;
+                        text-align: center;
+                        span{
+                            margin: 0 2px;
+                            font-size: 5px;
+                        }
+                    }
+                }
+            }
+            .right{
+                flex: 1;
+                text-align: right;
+                color: #1899F2;
+            }
+        }
+    }
+}
