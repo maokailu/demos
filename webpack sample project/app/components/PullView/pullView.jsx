@@ -153,7 +153,7 @@ export default class PullView extends React.Component{
                     status: '下拉刷新',
                     pullArrow: true,
                     pushArrow: false,
-                    completer: false
+                    completed: false
                 })
             }
         }
