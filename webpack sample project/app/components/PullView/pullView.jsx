@@ -1,11 +1,10 @@
 import React from 'react';
 import "./pullView.scss";
-import Icon from './Gou.png';
 export default class PullView extends React.Component{
     constructor(props){
         super(props);
         this.state ={
-            status: '',
+            status: null,
             loadingShow: false,
             completed: false,
             unCompleted: false,
@@ -19,6 +18,7 @@ export default class PullView extends React.Component{
         this.getJSON = this.getJSON.bind(this);
     }
 
+    status = ['下拉刷新', '释放刷新', '正在刷新', '刷新成功', '刷新失败'];
     initY = 0; // 滑动开始时的坐标
     moveY = 0; // 滑动时的坐标
     Y = 0; // 滑动向量
@@ -52,7 +52,7 @@ export default class PullView extends React.Component{
         }
         
         this.setState({
-            status: '下拉刷新',
+            status: this.status[0],
             loadingShow: false,
             pullArrow: true,
             pushArrow: false,
@@ -68,14 +68,14 @@ export default class PullView extends React.Component{
             if(this.Y > 0 && this.Y < 10){
                 obj.style.WebkitTransform = "translateY(" + (this.Y - 10) + "vh)";
                 this.setState({
-                    status: '下拉刷新',
+                    status: this.status[0],
                     pullArrow: true,
                     pushArrow: false
                 })
             }else if (this.Y > 10) {
                 obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
                 this.setState({
-                    status: '释放刷新',
+                    status: this.status[1],
                     pushArrow: true,
                     pullArrow: false
                 })
@@ -86,29 +86,28 @@ export default class PullView extends React.Component{
         var obj = e.target.parentNode;
         if (obj.className == "box") {
             this.endY = (obj.style.WebkitTransform.replace(/translateY\(/g, "").replace(/vh\)/g, "")) * 1;
-            if (this.state.status ==='释放刷新') {
+            if (this.state.status ===this.status[1]) {
                 obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
                 this.setState({
-                    status: '正在刷新',
+                    status: this.status[2],
                     loadingShow: true,
                     pushArrow: false
                 })
 
                 this.getJSON('http://freegeoip.net/json/?callback = handleResponse').then(json=> {
                     this.setState({
-                        status: '刷新成功',
+                        status: this.status[3],
                         loadingShow: false,
                         completed: true
                     })
                 }, error=> {
                     this.setState({
-                        status: '刷新失败',
+                        status: this.status[4],
                         loadingShow: false,
                         completed: false,
                         unCompleted: true
                     })
                 }).then(()=>{
-                    // 应该还原 这个值放state里，与status同步
                     setTimeout(()=>{
                         obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
                         this.endY = -10;
@@ -128,11 +127,11 @@ export default class PullView extends React.Component{
                     <div className="header">
                         {
                             this.state.completed && 
-                                <div className="completed_icon">OK</div>
+                            <span className="demoSpan1"></span>
                         }
                          {
                             this.state.unCompleted && 
-                                <div className="completed_icon">error</div>
+                                <div className="uncompleted_icon"></div>
                         }
                         {this.state.pullArrow &&
                             <i className="pullArrow"></i>

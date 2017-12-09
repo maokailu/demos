@@ -172,3 +172,12 @@
 //       border-right: .2rem solid transparent;
 //   }
 // }
+
+// span{height:40px; width:40px; display:block; position:relative;} 
+
+.demoSpan1{height:40px; width:40px; display:block; position:relative;border:3px solid #333;border-radius:50px;-webkit-border-radius:50px;-moz-border-radius:50px; background:#fff;}
+
+.demoSpan1:after, .demoSpan1:before{content:''; height:28px; width:4px; display:block; background:#333; position:absolute; top:6px; left:20px; border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px; transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);-ms-transform:rotate(45deg);}
+
+.demoSpan1:before{height:12px; transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);-ms-transform:rotate(-45deg); top:18px; left:8px;}
+
