@@ -5,10 +5,11 @@ export default class PullView extends React.Component{
     constructor(props){
         super(props);
         this.state ={
-            status: '下拉刷新',
+            status: '',
             loadingShow: false,
             completed: false,
-            pullArrow: true,
+            unCompleted: false,
+            pullArrow: false,
             pushArrow: false
         }
         
@@ -18,66 +19,10 @@ export default class PullView extends React.Component{
         this.getJSON = this.getJSON.bind(this);
     }
 
-    initY = 0;
-    moveY = 0;
-    endY = -10;
-    Y = 0;
+    initY = 0; // 滑动开始时的坐标
+    moveY = 0; // 滑动时的坐标
+    Y = 0; // 滑动向量
 
-    touchStartHandler(e){
-        var obj = e.target.parentNode;
-        if(obj.className === "box"){
-            this.initY = e.targetTouches[0].pageY * 100 / document.documentElement.clientHeight;
-        }
-    }
-    touchMoveHandler(e){
-        if(this.endY === -10){
-            var obj = e.target.parentNode;
-            if(obj.className === "box"){
-                this.moveY = e.targetTouches[0].pageY * 100 / document.documentElement.clientHeight;
-                this.Y = this.moveY - this.initY;
-                if (this.Y < 0) {
-                    // 往上滑
-                    obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
-                } else{
-                    // 跟随手势下滑
-                    obj.style.WebkitTransform = "translateY(" + (this.Y-10) + "vh)";
-                    if (this.Y > 10) {
-                        // 已完全滑出
-                        obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
-                        // 显示释放刷新
-                        this.setState({
-                            status: '释放刷新',
-                            loadingShow: false,
-                            pullArrow: false,
-                            pushArrow: true
-                        })
-                    }
-                }
-            }
-        }else{
-            var obj = e.target.parentNode;
-            if(obj.className === "box"){
-                this.moveY = e.targetTouches[0].pageY * 100 / document.documentElement.clientHeight;
-                this.Y = this.moveY - this.initY;
-                if (this.Y < 0) {
-                    this.setState({
-                        status: '下拉刷新',
-                        loadingShow: false,
-                        pullArrow: true,
-                        pushArrow: false
-                    })
-                    obj.style.WebkitTransform = "translateY(" + this.Y + "vh)";
-                    if (this.Y < -10) {
-                        // 已完全还原
-                        obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
-                    }
-                } else {
-                    // 往下滑
-                    obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
-                }
-            }
-        }
-    }
     getJSON = url => {
         const promise = new Promise(function(resolve, reject){
             const handler = function() {
@@ -100,61 +45,79 @@ export default class PullView extends React.Component{
         });
         return promise;
     }
+    touchStartHandler(e){
+        var obj = e.target.parentNode;
+        if(obj.className === "box"){
+            this.initY = e.targetTouches[0].pageY * 100 / document.documentElement.clientHeight;
+        }
+        
+        this.setState({
+            status: '下拉刷新',
+            loadingShow: false,
+            pullArrow: true,
+            pushArrow: false,
+            completed: false,
+            unCompleted: false
+        })
+    }
+    touchMoveHandler(e){
+        var obj = e.target.parentNode;
+        if(obj.className === "box"){
+            this.moveY = e.targetTouches[0].pageY * 100 / document.documentElement.clientHeight;
+            this.Y = this.moveY - this.initY;
+            if(this.Y > 0 && this.Y < 10){
+                obj.style.WebkitTransform = "translateY(" + (this.Y - 10) + "vh)";
+                this.setState({
+                    status: '下拉刷新',
+                    pullArrow: true,
+                    pushArrow: false
+                })
+            }else if (this.Y > 10) {
+                obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
+                this.setState({
+                    status: '释放刷新',
+                    pushArrow: true,
+                    pullArrow: false
+                })
+            }
+        }
+    }
     touchEndHandler= (e)=>{
         var obj = e.target.parentNode;
         if (obj.className == "box") {
-            // 使其完全滑出和还原的分界点
             this.endY = (obj.style.WebkitTransform.replace(/translateY\(/g, "").replace(/vh\)/g, "")) * 1;
-            if (this.endY > -5) {
-                // 应该滑出
+            if (this.state.status ==='释放刷新') {
                 obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
-                this.endY = 0;
-
-                // 显示正在刷新
                 this.setState({
                     status: '正在刷新',
                     loadingShow: true,
-                    pullArrow: false,
                     pushArrow: false
                 })
 
-                // 发请求
                 this.getJSON('http://freegeoip.net/json/?callback = handleResponse').then(json=> {
-                    // 请求成功
                     this.setState({
                         status: '刷新成功',
                         loadingShow: false,
-                        completed: true,
-                        pushArrow: false
+                        completed: true
                     })
                 }, error=> {
-                    console.error('出错了', error);
+                    this.setState({
+                        status: '刷新失败',
+                        loadingShow: false,
+                        completed: false,
+                        unCompleted: true
+                    })
                 }).then(()=>{
                     // 应该还原 这个值放state里，与status同步
                     setTimeout(()=>{
                         obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
-                        this.setState({
-                            status: '下拉刷新',       
-                            completed: false,
-                            pullArrow: true
-                        })
                         this.endY = -10;
                 }, 1000);
                     
                 });
 
             } else {
-                // 应该还原
                 obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
-                this.endY = -10;
-                
-                // 显示下拉刷新
-                this.setState({
-                    status: '下拉刷新',
-                    pullArrow: true,
-                    pushArrow: false,
-                    completed: false
-                })
             }
         }
     }
@@ -166,6 +129,10 @@ export default class PullView extends React.Component{
                         {
                             this.state.completed && 
                                 <div className="completed_icon">OK</div>
+                        }
+                         {
+                            this.state.unCompleted && 
+                                <div className="completed_icon">error</div>
                         }
                         {this.state.pullArrow &&
                             <i className="pullArrow"></i>
