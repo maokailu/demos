@@ -5,10 +5,10 @@ export default class PullView extends React.Component{
     constructor(props){
         super(props);
         this.state ={
-            status: '释放刷新',
+            status: '下拉刷新',
             loadingShow: false,
             completed: false,
-            pullArrow: false,
+            pullArrow: true,
             pushArrow: false
         }
         
@@ -44,6 +44,13 @@ export default class PullView extends React.Component{
                     if (this.Y > 10) {
                         // 已完全滑出
                         obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
+                        // 显示释放刷新
+                        this.setState({
+                            status: '释放刷新',
+                            loadingShow: false,
+                            pullArrow: false,
+                            pushArrow: true
+                        })
                     }
                 }
             }
@@ -53,6 +60,12 @@ export default class PullView extends React.Component{
                 this.moveY = e.targetTouches[0].pageY * 100 / document.documentElement.clientHeight;
                 this.Y = this.moveY - this.initY;
                 if (this.Y < 0) {
+                    this.setState({
+                        status: '下拉刷新',
+                        loadingShow: false,
+                        pullArrow: true,
+                        pushArrow: false
+                    })
                     obj.style.WebkitTransform = "translateY(" + this.Y + "vh)";
                     if (this.Y < -10) {
                         // 已完全还原
@@ -101,7 +114,8 @@ export default class PullView extends React.Component{
                 this.setState({
                     status: '正在刷新',
                     loadingShow: true,
-                    pullArrow: false
+                    pullArrow: false,
+                    pushArrow: false
                 })
 
                 // 发请求
@@ -111,6 +125,7 @@ export default class PullView extends React.Component{
                         status: '刷新成功',
                         loadingShow: false,
                         completed: true,
+                        pushArrow: false
                     })
                 }, error=> {
                     console.error('出错了', error);
@@ -119,10 +134,11 @@ export default class PullView extends React.Component{
                     setTimeout(()=>{
                         obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
                         this.setState({
-                            status: '释放刷新',       
+                            status: '下拉刷新',       
                             completed: false,
                             pullArrow: true
                         })
+                        this.endY = -10;
                 }, 1000);
                     
                 });
@@ -132,9 +148,12 @@ export default class PullView extends React.Component{
                 obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
                 this.endY = -10;
                 
-                // 显示释放刷新
+                // 显示下拉刷新
                 this.setState({
-                    status: '释放刷新'
+                    status: '下拉刷新',
+                    pullArrow: true,
+                    pushArrow: false,
+                    completer: false
                 })
             }
         }
@@ -151,9 +170,9 @@ export default class PullView extends React.Component{
                         {this.state.pullArrow &&
                             <i className="pullArrow"></i>
                         }
-                        {/* {this.state.pushArrow &&
+                        {this.state.pushArrow &&
                             <i className="pushArrow"></i>
-                        } */}
+                        }
                         {this.state.loadingShow && 
                             <div className="sk-fading-circle">
                                 <div className="sk-circle sk-circle1"></div>

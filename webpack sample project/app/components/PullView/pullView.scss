@@ -125,6 +125,31 @@
       border-top: 16px solid gray;   
   }
 }
+.pushArrow{
+    position: absolute;
+    left: 370px;
+    &:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2px;
+        height: 35px;
+        background: gray;
+    }
+    &:after{  
+        width: 0;
+        height: 0;
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: -16px;
+        
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 16px solid gray;   
+    }
+  }
 // .pushArrow{
 //   position: absolute;
 //   top: 50%;
