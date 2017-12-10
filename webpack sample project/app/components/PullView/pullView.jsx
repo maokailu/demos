@@ -1,6 +1,7 @@
 import React from 'react';
 import "./pullView.scss";
-import Loading from '../Loading/index.jsx'
+import Loading from '../Loading/index.jsx';
+import Arrow from '../Arrow/arrow.jsx';
 export default class PullView extends React.Component{
     constructor(props){
         super(props);
@@ -16,7 +17,7 @@ export default class PullView extends React.Component{
     }
 
     status = ['下拉刷新', '释放刷新', '正在刷新', '刷新成功', '刷新失败'];
-    icons = ['arrow_down', 'arrow_up', 'loading', 'success', 'error'];
+    icons = ['arrow_down_triangle', 'arrow_up_triangle', 'loading', 'success', 'error'];
     initY = 0; // 滑动开始时的坐标
     moveY = 0; // 滑动时的坐标
     Y = 0; // 滑动向量
@@ -120,10 +121,10 @@ export default class PullView extends React.Component{
                 <div className="box" onTouchStart={(e) => this.touchStartHandler(e)} onTouchMove={(e) => this.touchMoveHandler(e)} onTouchEnd = {(e) => this.touchEndHandler(e)} >
                     <div className="header">
                         {this.state.icon ===this.icons[0]  &&
-                            <i className={this.icons[0]}></i>
+                            <Arrow arrow_direction_type = {this.icons[0]} />
                         }
                         {this.state.icon ===this.icons[1] &&
-                            <i className={this.icons[1]}></i>
+                            <Arrow arrow_direction_type = {this.icons[1]} />
                         }
                         {this.state.icon ===this.icons[2] &&
                             <Loading />
@@ -140,6 +141,7 @@ export default class PullView extends React.Component{
                     </div>
                     <div className="main">
                         下拉出现刷新层
+                        <Arrow />
                     </div>
                 </div>
             </div>
