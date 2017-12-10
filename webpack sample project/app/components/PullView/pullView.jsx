@@ -1,15 +1,12 @@
 import React from 'react';
 import "./pullView.scss";
+import Loading from '../Loading/index.jsx'
 export default class PullView extends React.Component{
     constructor(props){
         super(props);
         this.state ={
             status: null,
-            loadingShow: false,
-            completed: false,
-            unCompleted: false,
-            pullArrow: false,
-            pushArrow: false
+            icon: null
         }
         
         this.touchStartHandler = this.touchStartHandler.bind(this);
@@ -19,6 +16,7 @@ export default class PullView extends React.Component{
     }
 
     status = ['下拉刷新', '释放刷新', '正在刷新', '刷新成功', '刷新失败'];
+    icons = ['arrow_down', 'arrow_up', 'loading', 'success', 'error'];
     initY = 0; // 滑动开始时的坐标
     moveY = 0; // 滑动时的坐标
     Y = 0; // 滑动向量
@@ -69,15 +67,13 @@ export default class PullView extends React.Component{
                 obj.style.WebkitTransform = "translateY(" + (this.Y - 10) + "vh)";
                 this.setState({
                     status: this.status[0],
-                    pullArrow: true,
-                    pushArrow: false
+                    icon: this.icons[0]
                 })
             }else if (this.Y > 10) {
                 obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
                 this.setState({
                     status: this.status[1],
-                    pushArrow: true,
-                    pullArrow: false
+                    icon: this.icons[1]
                 })
             }
         }
@@ -90,22 +86,18 @@ export default class PullView extends React.Component{
                 obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
                 this.setState({
                     status: this.status[2],
-                    loadingShow: true,
-                    pushArrow: false
+                    icon: this.icons[2]
                 })
 
                 this.getJSON('http://freegeoip.net/json/?callback = handleResponse').then(json=> {
                     this.setState({
                         status: this.status[3],
-                        loadingShow: false,
-                        completed: true
+                        icon: this.icons[3]
                     })
                 }, error=> {
                     this.setState({
                         status: this.status[4],
-                        loadingShow: false,
-                        completed: false,
-                        unCompleted: true
+                        icon: this.icons[4]
                     })
                 }).then(()=>{
                     setTimeout(()=>{
@@ -125,35 +117,22 @@ export default class PullView extends React.Component{
             <div className="wrapper">
                 <div className="box" onTouchStart={(e) => this.touchStartHandler(e)} onTouchMove={(e) => this.touchMoveHandler(e)} onTouchEnd = {(e) => this.touchEndHandler(e)} >
                     <div className="header">
+                        {this.state.icon ===this.icons[0]  &&
+                            <i className={this.icons[0]}></i>
+                        }
+                        {this.state.icon ===this.icons[1] &&
+                            <i className={this.icons[1]}></i>
+                        }
+                        {this.state.icon ===this.icons[2] &&
+                            <Loading />
+                        }
                         {
-                            this.state.completed && 
-                            <span className="demoSpan1"></span>
+                            this.state.icon ===this.icons[3] && 
+                            <span className={this.icons[3]}></span>
                         }
                          {
-                            this.state.unCompleted && 
-                                <div className="uncompleted_icon"></div>
-                        }
-                        {this.state.pullArrow &&
-                            <i className="pullArrow"></i>
-                        }
-                        {this.state.pushArrow &&
-                            <i className="pushArrow"></i>
-                        }
-                        {this.state.loadingShow && 
-                            <div className="sk-fading-circle">
-                                <div className="sk-circle sk-circle1"></div>
-                                <div className="sk-circle sk-circle2"></div>
-                                <div className="sk-circle sk-circle3"></div>
-                                <div className="sk-circle sk-circle4"></div>
-                                <div className="sk-circle sk-circle5"></div>
-                                <div className="sk-circle sk-circle6"></div>
-                                <div className="sk-circle sk-circle7"></div>
-                                <div className="sk-circle sk-circle8"></div>
-                                <div className="sk-circle sk-circle9"></div>
-                                <div className="sk-circle sk-circle10"></div>
-                                <div className="sk-circle sk-circle11"></div>
-                                <div className="sk-circle sk-circle12"></div>
-                            </div>
+                            this.state.icon ===this.icons[4] && 
+                                <div className={this.icons[4]}></div>
                         }
                         {this.state.status}
                     </div>
