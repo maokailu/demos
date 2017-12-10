@@ -63,18 +63,20 @@ export default class PullView extends React.Component{
         if(obj.className === "box"){
             this.moveY = e.targetTouches[0].pageY * 100 / document.documentElement.clientHeight;
             this.Y = this.moveY - this.initY;
-            if(this.Y > 0 && this.Y < 10){
+            if(this.Y > 0 ){
                 obj.style.WebkitTransform = "translateY(" + (this.Y - 10) + "vh)";
-                this.setState({
-                    status: this.status[0],
-                    icon: this.icons[0]
-                })
-            }else if (this.Y > 10) {
-                obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
-                this.setState({
-                    status: this.status[1],
-                    icon: this.icons[1]
-                })
+                if(this.Y > 0 && this.Y < 10){
+                    this.setState({
+                        status: this.status[0],
+                        icon: this.icons[0]
+                    })
+                }else if (this.Y > 10) {
+                    // obj.style.WebkitTransform = "translateY(" + 0 + "vh)"; // 只能下拉到一定距离
+                    this.setState({
+                        status: this.status[1],
+                        icon: this.icons[1]
+                    })
+                }
             }
         }
     }
