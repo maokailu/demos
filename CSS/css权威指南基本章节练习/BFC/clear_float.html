@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>自适应两栏布局</title>
+        <link rel="stylesheet" href="index.css">
+        <style>
+            .par {
+                border: 5px solid #fcc;
+                width: 300px;
+                overflow: hidden;
+            }
+         
+            .child {
+                border: 5px solid #f66;
+                width:100px;
+                height: 100px;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 计算BFC的高度时，浮动元素也参与计算
+
+　　为达到清除内部浮动，我们可以触发par生成BFC，那么par在计算高度时，par内部的浮动元素child也会参与计算。 -->
+        <div class="par">
+            <div class="child"></div>
+            <div class="child"></div>
+        </div>
+    </body>
+</html>
