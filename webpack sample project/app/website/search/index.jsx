@@ -2,7 +2,7 @@
 import React from 'react';
 import  './style.scss';
 
-class Search extends React.Component {
+export default class Search extends React.Component {
     // 定义属性
     constructor(props){
         super(props);
@@ -14,7 +14,7 @@ class Search extends React.Component {
     componentDidMount(){
     }
     // 事件绑定的函数
-    search= () => {
+    search = () => {
         console.log(event);
     }
     tabToggle=() =>{
@@ -82,4 +82,3 @@ class Search extends React.Component {
         );
     }
 }
-export default Search;

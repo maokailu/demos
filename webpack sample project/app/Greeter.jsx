@@ -1,11 +1,11 @@
 import React from 'react';
 import './Greeter.scss';
-import PullView from "./components/PullView/pullView.jsx"
+import Search from "./website/Search";
 
 class Greeter extends React.Component{
   render() {
     return (
-      <PullView />
+      <Search />
     );
   }
 }
