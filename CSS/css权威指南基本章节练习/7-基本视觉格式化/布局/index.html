@@ -1,0 +1,56 @@
+<style>
+    body{
+        font-size: 4em;
+        margin: 0;
+    }
+
+    .horizontal1, .horizontal2{
+        position: relative;
+    }
+    .horizontal1 .left, .horizontal1 .right{
+        position: absolute;
+        background: orange;
+        width: 200px;
+    }
+    .horizontal1 .right{
+        right: 0;
+        /* 垂直方向默认跟随Static文档流从上往下排列，不设置top将排在main下方 */
+        top: 0;
+    }
+    .horizontal1 .main{
+        margin: 0 200px;
+        background: blue;
+    }
+
+    .horizontal2 .left, .horizontal2 .right{
+        background: orange;
+        width: 200px;
+    }
+    .horizontal2 .left{
+        float: left;
+    }
+    .horizontal2 .right{
+        float: right;
+    }
+    .horizontal2 .main{
+        margin: 0 200px;
+        background: blue;
+    }
+    /* 为何挤到下一栏了？ */
+</style>
+<body>
+    <h1>水平布局</h1>
+    <h5>一.左右两边定宽，中间部分自适应</h5>
+    <h6>1.左右两边进行绝对定位 + 中间部分设置margin</h6>
+    <div class="horizontal1">
+        <div class="left">left</div>
+        <div class="main">main</div>
+        <div class="right">right</div>
+    </div>
+    <h6>2.左右两边进行浮动 + 中间部分设置margin</h6>
+    <div class="horizontal2">
+        <div class="left">left</div>
+        <div class="main">main</div>
+        <div class="right">right</div>
+    </div>
+</body>

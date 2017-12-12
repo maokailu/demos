@@ -9,7 +9,7 @@ class Js extends React.Component {
         // this.format();
     }
     // 事件绑定的函数
-    search= (e) => {
+    search = (e) => {
         console.log(this);
         console.log(e);
         console.log(e.currentTarget);

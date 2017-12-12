@@ -7,7 +7,8 @@ export default class PullView extends React.Component{
         super(props);
         this.state ={
             status: null,
-            icon: null
+            icon: null,
+            data: null
         }
         
         this.touchStartHandler = this.touchStartHandler.bind(this);
@@ -92,11 +93,13 @@ export default class PullView extends React.Component{
                     icon: this.icons[2]
                 })
 
-                this.getJSON('http://freegeoip.net/json/?callback = handleResponse').then(json=> {
+                this.getJSON('http://freegeoip.net/json/?callback = handleResponse').then(json => {
                     this.setState({
                         status: this.status[3],
-                        icon: this.icons[3]
-                    })
+                        icon: this.icons[3],
+                        data: json
+                    });
+                    console.log(json);
                 }, error=> {
                     this.setState({
                         status: this.status[4],
@@ -116,6 +119,11 @@ export default class PullView extends React.Component{
         }
     }
     render(){
+        let tip = "";
+        const obj = this.state.data;
+        for(let index in obj){  
+            tip += index+": " + obj[index] + ";";
+        }
         return (
             <div className="wrapper">
                 <div className="box" onTouchStart={(e) => this.touchStartHandler(e)} onTouchMove={(e) => this.touchMoveHandler(e)} onTouchEnd = {(e) => this.touchEndHandler(e)} >
@@ -140,8 +148,7 @@ export default class PullView extends React.Component{
                         {this.state.status}
                     </div>
                     <div className="main">
-                        下拉出现刷新层
-                        <Arrow />
+                        {tip ||"下拉返回http://freegeoip.net/json的数据"}
                     </div>
                 </div>
             </div>
