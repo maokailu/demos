@@ -11,13 +11,27 @@
         <h1>垂直对齐</h1>
         <h2>一.行高</h2>
         <h3>1.构造文本行</h3>
+        <h4>块级元素</h4>
         <p class="cl1">A line box containing some text and elements.</p>
-        备注：检查元素显示的是行框，背景色也加在了行框上，在这里默认为font-size的1.3倍。
+        备注：检查元素显示的是行框，在谷歌浏览器默认为font-size的1.3倍。内容区+行间距=行内框。
+        <h4>行内元素</h4>
+        <span style="line-height: 70px; background: orange">检查行内元素显示内容区</span>
+        <div>
+            <span style="line-height: 70px; background: orange">检查行内元素的父元素可观察到整个行框</span>
+        </div>
+        
+        如何选择文本的上下文：
+            1.行内元素如span: 一般用span来包含文本
+            2.块级元素如p: 一般用于段落
+            
+        line-height的作用:
+            1.line-height = height，设置文本垂直居中
+            2.p段落中通过设置行高设置行间距
+
         <h3>2.指定line-height值</h3>
         <div class="cl2">
             <p>This paragraph inherits a 'line-height' of 14px from the div,as well as a 'font-size' of 13px.</p>                
-            <p class="cl2-1">This paragraph has a 'line-height' of 19.5px(13 * 1.5), so it will have slightly more line-height than usual.</p>
-            <p class="cl2-2">This paragraph has a 'line-height' of 19.5px(10 * 150%), so it will have slightly more line-height than usual.</p>
+            <div style="font-size: 20px"><p class="cl2-1">This paragraph has a 'line-height' of 19.5px(13 * 1.5), so it will have slightly more line-height than usual.</p></div>            <p class="cl2-2">This paragraph has a 'line-height' of 19.5px(10 * 150%), so it will have slightly more line-height than usual.</p>
         </div>
         <h3>3.行高和继承</h3>
         <div class="cl3">
@@ -31,7 +45,7 @@
             </div>
         </div>
         <h2>二.垂直对齐文本</h2>
-        <h3>1.基线对齐</h3>
+        <h3>1.上标和下标</h3>
         <p>This paragraph contains <span class="raise">superscripted</span> and <span class="lower">subscripted</span> text.</p>
         <h3>2.底端对齐</h3>
         <p>This paragraph contains <span class="bottom">bottom</span> text.</p>

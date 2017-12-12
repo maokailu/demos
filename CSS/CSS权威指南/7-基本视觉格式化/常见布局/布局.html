@@ -4,7 +4,7 @@
         margin: 0;
     }
 
-    .horizontal1, .horizontal2{
+    .horizontal1, .horizontal2, .horizontal3{
         position: relative;
     }
     .horizontal1 .left, .horizontal1 .right{
@@ -36,7 +36,34 @@
         margin: 0 200px;
         background: blue;
     }
-    /* 为何挤到下一栏了？ */
+
+    .horizontal3 .main {        
+        float: left;       
+        width: 100%;
+        background: blue;
+    }
+    .horizontal3 .left, .horizontal3 .right{
+        background: orange;
+        width: 200px;
+    }
+    .horizontal3 .left {       
+        float: left;        
+        width: 190px;        
+        margin-left: -100%;               
+        position: relative;  
+        left: -190px;  
+    }
+    .horizontal3 .right {        
+        float: left;        
+        width: 230px;        
+        margin-left: -230px; 
+        position: relative; 
+        right: -230px;
+    }
+    .horizontal3{        
+        padding: 0 230px 0 190px;
+        overflow: hidden; 
+    }
 </style>
 <body>
     <h1>水平布局</h1>
@@ -50,7 +77,16 @@
     <h6>2.左右两边进行浮动 + 中间部分设置margin</h6>
     <div class="horizontal2">
         <div class="left">left</div>
-        <div class="main">main</div>
         <div class="right">right</div>
+        <div class="main">main</div>
     </div>
+    <h6>3.圣杯布局</h6>
+    <div class="horizontal3"> 
+        <div class="main">main</div>        
+        <div class="left">sub</div>        
+        <div class="right">extra</div>  
+    </div>
+    <span style="background: blue; width:50px; display:flex;">
+        textff fffff
+    </span>
 </body>

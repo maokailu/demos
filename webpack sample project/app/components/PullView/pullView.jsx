@@ -109,8 +109,7 @@ export default class PullView extends React.Component{
                     setTimeout(()=>{
                         obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
                         this.endY = -10;
-                }, 1000);
-                    
+                    }, 1000);
                 });
 
             } else {
@@ -148,7 +147,7 @@ export default class PullView extends React.Component{
                         {this.state.status}
                     </div>
                     <div className="main">
-                        {tip ||"下拉返回http://freegeoip.net/json的数据"}
+                        {tip ||"下拉获取http://freegeoip.net/json的数据"}
                     </div>
                 </div>
             </div>
