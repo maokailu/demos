@@ -1,7 +1,7 @@
 import React from 'react';
-import "./pullView.scss";
-import Loading from '../Loading/index.jsx';
-import Arrow from '../Arrow/arrow.jsx';
+import "./style.scss";
+import Loading from '../Loading';
+import Arrow from '../Arrow';
 export default class PullView extends React.Component{
     constructor(props){
         super(props);
@@ -36,7 +36,7 @@ export default class PullView extends React.Component{
                 }
             };
             const client = new XMLHttpRequest();
-            client.open("GET", url);
+            client.open('GET', url);
             client.onreadystatechange = handler;
             client.responseType = "json";
             client.setRequestHeader("Accept", "application/json");
@@ -47,7 +47,7 @@ export default class PullView extends React.Component{
     }
     touchStartHandler(e){
         var obj = e.target.parentNode;
-        if(obj.className === "box"){
+        if(obj.className === 'box'){
             this.initY = e.targetTouches[0].pageY * 100 / document.documentElement.clientHeight;
         }
         
@@ -62,18 +62,18 @@ export default class PullView extends React.Component{
     }
     touchMoveHandler(e){
         var obj = e.target.parentNode;
-        if(obj.className === "box"){
+        if(obj.className === 'box'){
             this.moveY = e.targetTouches[0].pageY * 100 / document.documentElement.clientHeight;
             this.Y = this.moveY - this.initY;
             if(this.Y > 0 ){
-                obj.style.WebkitTransform = "translateY(" + (this.Y - 10) + "vh)";
+                obj.style.WebkitTransform = 'translateY(' + (this.Y - 10) + 'vh)';
                 if(this.Y > 0 && this.Y < 10){
                     this.setState({
                         status: this.status[0],
                         icon: this.icons[0]
                     })
                 }else if (this.Y > 10) {
-                    // obj.style.WebkitTransform = "translateY(" + 0 + "vh)"; // 只能下拉到一定距离
+                    // obj.style.WebkitTransform = 'translateY(' + 0 + 'vh)'; // 只能下拉到一定距离
                     this.setState({
                         status: this.status[1],
                         icon: this.icons[1]
@@ -84,10 +84,10 @@ export default class PullView extends React.Component{
     }
     touchEndHandler= (e)=>{
         var obj = e.target.parentNode;
-        if (obj.className == "box") {
-            this.endY = (obj.style.WebkitTransform.replace(/translateY\(/g, "").replace(/vh\)/g, "")) * 1;
+        if (obj.className == 'box') {
+            this.endY = (obj.style.WebkitTransform.replace(/translateY\(/g, '').replace(/vh\)/g, '')) * 1;
             if (this.state.status ===this.status[1]) {
-                obj.style.WebkitTransform = "translateY(" + 0 + "vh)";
+                obj.style.WebkitTransform = 'translateY(' + 0 + 'vh)';
                 this.setState({
                     status: this.status[2],
                     icon: this.icons[2]
@@ -107,25 +107,30 @@ export default class PullView extends React.Component{
                     })
                 }).then(()=>{
                     setTimeout(()=>{
-                        obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
+                        obj.style.WebkitTransform = 'translateY(' + -10 + 'vh)';
                         this.endY = -10;
                     }, 1000);
                 });
 
             } else {
-                obj.style.WebkitTransform = "translateY(" + -10 + "vh)";
+                obj.style.WebkitTransform = 'translateY(' + -10 + 'vh)';
             }
         }
     }
     render(){
-        let tip = "";
+        let tip = '';
         const obj = this.state.data;
         for(let index in obj){  
-            tip += index+": " + obj[index] + ";";
+            tip += index + ': ' + obj[index] + ';';
         }
         return (
             <div className="wrapper">
-                <div className="box" onTouchStart={(e) => this.touchStartHandler(e)} onTouchMove={(e) => this.touchMoveHandler(e)} onTouchEnd = {(e) => this.touchEndHandler(e)} >
+                <div 
+                    className="box" 
+                    onTouchStart={(e) => this.touchStartHandler(e)}
+                    onTouchMove={(e) => this.touchMoveHandler(e)}
+                    onTouchEnd = {(e) => this.touchEndHandler(e)} 
+                >
                     <div className="header">
                         {this.state.icon ===this.icons[0]  &&
                             <Arrow arrow_direction_type = {this.icons[0]} />

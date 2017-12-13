@@ -9,7 +9,7 @@ module.exports = {
       filename: "bundle.js" //打包后输出文件的文件名
     },
     resolve: {
-        extensions: ['.js', '.jsx','.json']
+        extensions: ['.js', '.jsx', '.json']
     },
     devServer: {
       contentBase: "./public", //本地服务器所加载的页面所在的目录
