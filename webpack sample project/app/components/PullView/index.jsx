@@ -2,6 +2,7 @@ import React from 'react';
 import './style.scss';
 import Loading from '../Loading';
 import Arrow from '../Arrow';
+import Pagination from '../Pagination';
 export default class PullView extends React.Component {
     constructor(props) {
         super(props);
@@ -149,7 +150,8 @@ export default class PullView extends React.Component {
                         {this.state.status}
                     </div>
                     <div className="main">
-                        {tip || '下拉获取http://freegeoip.net/json的数据' }
+                        {/* {tip || '下拉获取http://freegeoip.net/json的数据' } */}
+                        <Pagination />
                     </div>
                 </div>
             </div>

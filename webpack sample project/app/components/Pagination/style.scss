@@ -1,0 +1,17 @@
+
+.pagination{
+    display: flex;
+}
+.pageItem{
+    background: white;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.status{
+    background: blue;
+}
