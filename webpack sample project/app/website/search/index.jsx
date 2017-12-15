@@ -4,14 +4,11 @@ import  './style.scss';
 
 export default class Search extends React.Component {
     // 定义属性
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             currentTab: ''
-        }
-    }
-    // 定义方法
-    componentDidMount(){
+        };
     }
     // 事件绑定的函数
     search = () => {
@@ -67,7 +64,7 @@ export default class Search extends React.Component {
                                     <span className="minus">-</span>
                                     <span className="num">9</span>
                                     <span className="add">+</span>
-                                 </div>
+                                </div>
                             </div>
                             <div>
                                 <div className="tip">Class</div>

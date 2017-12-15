@@ -1,6 +1,7 @@
 // postcss.config.js
 module.exports = {
-    plugins: [
-        require('autoprefixer')
-    ]
-}
+  plugins: [
+    require('autoprefixer'),
+    require('stylelint')
+  ]
+};

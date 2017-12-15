@@ -1,153 +1,85 @@
-.wrapper{
-    height:100vh;
-    overflow: hidden;
-    position: relative;
-}
-.box{
-    -webkit-transform: translateY(-10vh);
-}
-.header{
-    background: #fff;
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-}
-.main{
-    background: #ccc;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
+.wrapper {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  > .box {
+    transform: translateY(-10vh);
+
+    > .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 10vh;
+      background: #fff;
+      font-size: 2rem;
+    }
+
+    > .main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #ccc;
+      font-size: 3rem;
+    }
+  }
 }
 
-.arrow_down{
+.success {
+  display: block;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  background: #fff;
+  border: 3px solid #333;
+  border-radius: 50px;
+}
+
+.success::after,
+.success::before {
+  content: '';
+  display: block;
   position: absolute;
-  left: 370px;
-  &:before{
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 2px;
-      height: 35px;
-      background: gray;
-  }
-  &:after{  
-      width: 0;
-      height: 0;
-      content: '';
-      position: absolute;
-      left: -6px;
-      top: 29px;
-      
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 16px solid gray;   
-  }
-}
-.arrow_up{
-    position: absolute;
-    left: 370px;
-    &:before{
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 2px;
-        height: 35px;
-        background: gray;
-    }
-    &:after{  
-        width: 0;
-        height: 0;
-        content: '';
-        position: absolute;
-        left: -8px;
-        top: -16px;
-        
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-bottom: 16px solid gray;   
-    }
-  }
-
-.success{
-    height:40px;
-    width:40px;
-    display:block;
-    position:relative;
-    border:3px solid #333;
-    border-radius:50px;
-    -webkit-border-radius:50px;
-    -moz-border-radius:50px;
-    background:#fff;
+  top: 6px;
+  left: 20px;
+  transform: rotate(45deg);
+  height: 28px;
+  width: 4px;
+  background: #333;
+  border-radius: 10px;
 }
 
-.success:after, .success:before{content:'';
-    height:28px;
-    width:4px;
-    display:block;
-    background:#333;
-    position:absolute;
-    top:6px;
-    left:20px;
-    border-radius:10px;
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px;
-    transform:rotate(45deg);
-    -webkit-transform:rotate(45deg);
-    -moz-transform:rotate(45deg);
-    -o-transform:rotate(45deg);
-    -ms-transform:rotate(45deg);
+.success::before {
+  top: 18px;
+  left: 8px;
+  transform: rotate(-45deg);
+  height: 12px;
 }
 
-.success:before{height:12px;
-    transform:rotate(-45deg);
-    -webkit-transform:rotate(-45deg);
-    -moz-transform:rotate(-45deg);
-    -o-transform:rotate(-45deg);
-    -ms-transform:rotate(-45deg);
-    top:18px; left:8px;
+.error {
+  display: block;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  border: 4px solid #333;
 }
 
-
-
-.error{height:40px;
-    width:40px;
-    display:block;
-    position:relative;
-    border-radius:50px;
-    -webkit-border-radius:50px;
-    -moz-border-radius:50px;
-    border:4px solid #333;
-    width:32px;
-    height:32px;
+.error::before,
+.error::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 12.5px;
+  left: 4px;
+  transform: rotate(-45deg);
+  height: 6px;
+  width: 24px;
+  background: #333;
+  border-radius: 10px;
 }
 
-.error:before, .error:after{
-    content:'';
-    height:6px;
-    width:24px;
-    display:block;
-    background:#333;
-    border-radius:10px;
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px;
-    position:absolute;
-    top:12.5px; left:4px;
-    transform:rotate(-45deg);
-    -webkit-transform:rotate(-45deg);
-    -moz-transform:rotate(-45deg);
-    -o-transform:rotate(-45deg);
-    -ms-transform:rotate(-45deg);}
-
-.error:after{
-    transform:rotate(45deg);
-    -webkit-transform:rotate(45deg);
-    -moz-transform:rotate(45deg);
-    -o-transform:rotate(45deg);
-    -ms-transform:rotate(45deg);
+.error::after {
+  transform: rotate(45deg);
 }

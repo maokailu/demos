@@ -1,6 +1,6 @@
 
 import React from 'react';
-import styles from '../style/index.scss';
+import '../style/index.scss';
 
 class Notice extends React.Component {
     componentDidMount() {

@@ -1,17 +1,27 @@
+.pagination {
+  display: flex;
 
-.pagination{
-    display: flex;
-}
-.pageItem{
-    background: white;
-    border: 1px solid black;
-    width: 100px;
-    height: 100px;
-    font-size: 4rem;
+  @mixin pageItem ($background, $border) {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.status{
+    width: 100px;
+    height: 100px;
+    background: $background;
+    border: $border  solid  black;
+    font-size: 4rem;
+  }
+
+  .pageItem {
+    @include pageItem(white, 1px);
+  }
+
+  .points {
+    @include pageItem(#ccc, 0);
+  }
+
+  .current {
     background: blue;
+  }
 }
+

@@ -29,8 +29,8 @@
     ],
     "root": true,
     "rules": {
-        // 使用 4 个空格缩进
-        "indent": [2, 4],
+        // 使用 2 个空格缩进
+        "indent": [2, 2],
         // 使用驼峰命名或者 UPPERCASE_WITH_UNDERSCORES
         "camelcase": [2, {"properties": "never"}],
         // 使用单引号
@@ -125,24 +125,24 @@
         // 在需要使用引号时该对象所有属性都使用引号
         "quote-props": [2, "consistent"],
         // 需要使用 JSDoc
-        "require-jsdoc": [2, {
-            "require": {
-                "FunctionDeclaration": true,
-                "MethodDefinition": false,
-                "ClassDeclaration": false
-            }
-        }],
-        // 配置 JSDoc 规则
-        "valid-jsdoc": [2, {
-            "requireParamDescription": false,
-            "requireReturnDescription": false,
-            "requireReturn": false,
-            "prefer": {"returns": "return"}
-        }],
-        "semi-spacing": [2, {
-            "before": false,
-            "after": true
-        }],
+        // "require-jsdoc": [2, {
+        //     "require": {
+        //         "FunctionDeclaration": true,
+        //         "MethodDefinition": false,
+        //         "ClassDeclaration": false
+        //     }
+        // }],
+        // // 配置 JSDoc 规则
+        // "valid-jsdoc": [2, {
+        //     "requireParamDescription": false,
+        //     "requireReturnDescription": false,
+        //     "requireReturn": false,
+        //     "prefer": {"returns": "return"}
+        // }],
+        // "semi-spacing": [2, {
+        //     "before": false,
+        //     "after": true
+        // }],
         // 在块语句前使用空格
         "space-before-blocks": 2,
         // 在函数声明后禁用空格
@@ -155,7 +155,6 @@
         "space-in-parens": 2,
         // 在注释后使用空格
         "spaced-comment": [2, "always"],
-
         // react
         // 这里关掉属性类型校验
         "react/prop-types": "off"
