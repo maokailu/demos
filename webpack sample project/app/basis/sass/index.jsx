@@ -3,10 +3,10 @@ import React from 'react';
 // import styles from './index.scss';
 
 class SassExercise extends React.Component {
-    render() {
-        return (
-            <div>
-                {/* <div className="tip">
+  render() {
+    return (
+      <div>
+        {/* <div className="tip">
                     <h3>@extend</h3>
                     <div className="error">
                         错误
@@ -16,8 +16,8 @@ class SassExercise extends React.Component {
                     </div>
                 </div>
                 <p></p> */}
-            </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 export default SassExercise;

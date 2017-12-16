@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import PullView from './components/PullView';
+import List from './website/List';
+import './components/Adaptation';
 import './main.scss';
 
-{/* <Hello compiler="TypeScript" framework="React" /> */}
-render(<PullView />, document.getElementById('root'));
+render(<List />, document.getElementById('root'));

@@ -1,8 +1,8 @@
 
-(function() {
+(function(window, document) {
   var docEl = document.documentElement;
   var dpr;
-  console.log('d');
+
   // set scale = 1 / dpr;
   function setScale() {
     var scale;
@@ -44,4 +44,9 @@
     docEl.style.fontSize = rem + 'px';
   }
   setRemUnit();
-})();
+
+  window.onresize = function() {
+    docEl = document.documentElement;
+    setRemUnit();
+  };
+})(window, document);

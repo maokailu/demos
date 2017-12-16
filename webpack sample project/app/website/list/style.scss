@@ -1,14 +1,15 @@
+@import '../../components/Adaptation/style.scss';
 .header{
-    height: 42px;
+    height: 1rem;
     background: rgb(63, 130, 255);
     display: flex;
     .info{
         flex: 1;
-        height: 42px;
-        line-height: 42px;
+        height: 0.5rem;
+        line-height: 0.5rem;
         color: #fff;
         opacity: .7;
-        font-size: .5rem;
+        @include font-dpr(40px);
     }
     .filter{
         display: flex;
@@ -19,31 +20,30 @@
 }
 .main{
     position: absolute;
-    top: 42px;
+    top: 1rem;
     left: 0;
     right: 0;
     background: rgb(235, 233, 233);
     .item{
-        margin: 5px;
-        padding: 5px 12px;
+        margin: 0.2rem;
+        padding: 0.2rem 0.2rem;
         background: white;
         .row2{
             display: flex;
             .left{
                 display: flex;
                 div{
-                    width: 55px;
-                    margin-right: 8px;
+                    margin-right: 0.1rem;
                     .time{
-                        font-size: 20px;
+                        @include font-dpr(30px);
                         text-align: center;
                     }
                     .airport{
                         color: #999;
                         text-align: center;
                         span{
-                            margin: 0 2px;
-                            font-size: 5px;
+                            margin: 0 0.02rem;
+                            @include font-dpr(20px);
                         }
                     }
                 }
