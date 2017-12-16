@@ -5,6 +5,7 @@
 
   > .box {
     transform: translateY(-10vh);
+    font-size: 24px;
 
     > .header {
       display: flex;
@@ -12,7 +13,6 @@
       justify-content: center;
       height: 10vh;
       background: #fff;
-      font-size: 2rem;
     }
 
     > .main {
@@ -21,7 +21,6 @@
       justify-content: center;
       height: 100vh;
       background: #ccc;
-      font-size: 3rem;
     }
   }
 }

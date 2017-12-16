@@ -1,5 +1,6 @@
 import React from 'react';
 import Page from './Page';
+import '../Adaptation';
 export default class Pagination extends React.Component {
   constructor(props) {
     super(props);

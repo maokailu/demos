@@ -1,15 +1,18 @@
+@import "../Adaptation/style.scss";
+
 .pagination {
   display: flex;
 
   @mixin pageItem ($background, $border) {
+    @include font-dpr(36px);
+
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 1rem;
+    height: 1rem;
     background: $background;
     border: $border  solid  black;
-    font-size: 4rem;
   }
 
   .pageItem {

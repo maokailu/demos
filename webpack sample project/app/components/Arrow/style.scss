@@ -24,7 +24,7 @@
 // }
 
 // 采用flex
-$width: 10rem;
+$width: 0.1rem;
 // 向右半角箭头
 .arrow-right-semiangle {
   width: $width;
@@ -32,15 +32,15 @@ $width: 10rem;
 
   &::before {
     content: '';
-    width: 7rem;
-    height: 2rem;
-    border-bottom: 1rem solid #ccc;
+    width: 0.7rem;
+    height: 0.2rem;
+    border-bottom: 0.1rem solid #ccc;
   }
 
   &::after {
     content: '';
-    border-bottom: 3rem solid #ccc;
-    border-right: 3rem solid transparent;
+    border-bottom: 0.3rem solid #ccc;
+    border-right: 0.3rem solid transparent;
   }
 }
 // 向右三角箭头
@@ -64,7 +64,7 @@ $width: 10rem;
   }
 }
 
-$height: 5rem;
+$height: 0.83rem;
 // 向上三角箭头
 .arrow-up-triangle {
   height: $height;
@@ -73,16 +73,16 @@ $height: 5rem;
 
   &::before {
     content: '';
-    border-bottom: 1.2rem solid #ccc;
-    border-left: 0.6rem solid transparent;
-    border-right: 0.6rem solid transparent;
+    border-bottom: 0.2rem solid #ccc;
+    border-left: 0.1rem solid transparent;
+    border-right: 0.1rem solid transparent;
   }
 
   &::after {
     content: '';
-    width: 0.5rem;
-    height: 4.4rem;
-    border-right: 0.2rem solid #ccc;
+    width: 0.08rem;
+    height: 0.73rem;
+    border-right: 0.03rem solid #ccc;
   }
 }
 
@@ -94,15 +94,15 @@ $height: 5rem;
 
   &::before {
     content: '';
-    width: 0.5rem;
-    height: 4.4rem;
-    border-right: 0.2rem solid #ccc;
+    width: 0.08rem;
+    height: 0.73rem;
+    border-right: 0.03rem solid #ccc;
   }
 
   &::after {
     content: '';
-    border-top: 1.2rem solid #ccc;
-    border-left: 0.6rem solid transparent;
-    border-right: 0.6rem solid transparent;
+    border-top: 0.2rem solid #ccc;
+    border-left: 0.1rem solid transparent;
+    border-right: 0.1rem solid transparent;
   }
 }
