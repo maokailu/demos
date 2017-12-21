@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import List from './website/List';
+import Nav from './myBlog/Nav';
 import './components/Adaptation';
 import './main.scss';
 
-render(<List />, document.getElementById('root'));
+render(<Nav />, document.getElementById('root'));
