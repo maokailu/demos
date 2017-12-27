@@ -46,7 +46,7 @@ export default class Toggle extends React.Component {
         </button>
         <br/>
         {/* 传参 */}
-        {/* 定义handleClick3也可使用箭头函数 */}
+        {/* 定义handleClick3也可使用箭头函数。 定义时使用箭头函数，传参时用bind此方法最简洁 and 性能最高*/}
         <button style = {{ 'fontSize': '5em' }} onClick={this.handleClick3.bind(this, this.state.id)}>
           button3
         </button>
