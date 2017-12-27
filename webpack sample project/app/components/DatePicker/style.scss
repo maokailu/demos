@@ -1,11 +1,12 @@
 @import "../Adaptation/style.scss";
 
-.pagination {
+.datePicker {
+  font-size: 20px;
 
-  .pageItem {
-    font-size: 40px;
+  td {
     width: 1rem;
     height: 1rem;
+    text-align: center;
     background: orange;
   }
 }
