@@ -2,14 +2,14 @@
 // 6 变量(配合if\for\while使用) 运算（代替calc计算宽度的其中一种解决方案）
 // 通过 #{} 插值语句可以在选择器或属性名中使用变量
 // 7 7.3. @extend（复用一段样式）
-.tip{
-    text-align: center;
-    $width: 1px + 1px !global;
-    border: {
-        color: white;
-        width: $width;
-        style: solid;
-    }
+.tip {
+  text-align: center;
+  $width: 1px + 1px !global;
+  border: {
+    color: white;
+    width: $width;
+    style: solid;
+  }
     &:hover{
         text-decoration: underline; 
     }

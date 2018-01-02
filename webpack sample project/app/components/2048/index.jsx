@@ -7,6 +7,7 @@ let startY = 0;
 let endX = 0;
 let endY = 0;
 let grid = null;
+// let distances = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
 export default class Game2048 extends React.Component {
   constructor(props) {
     super(props);
@@ -119,6 +120,9 @@ export default class Game2048 extends React.Component {
               continue;
             }
             if (grid[j][i] === 0) {
+              // // 获得当前ki的tile并将它移动到tileji
+              // let distance = j - k;
+              // distances[k][i] =  'Y-' + distance;
               grid[j][i] = grid[k][i];
               grid[k][i] = 0;
             } else if (grid[j][i]  === grid[k][i]) {
@@ -166,18 +170,6 @@ export default class Game2048 extends React.Component {
         }
       }
     }
-    // for (let i = 0 ;i < 4; i++) {
-    //   for (let j = cellS;j >= cellE;j--) {
-    //     if (grid[j][i] === 0) {
-    //       for (let k = j - 1 ;k >= 0;k--) {
-    //         if (grid[k][i] !== 0) {
-    //           grid[j][i] = grid[k][i];
-    //           grid[k][i] = 0;
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
     this.setState({
       grid: grid
     });
@@ -193,7 +185,7 @@ export default class Game2048 extends React.Component {
               row.map((cell, columnIndex) =>(
                 <div  className = "tr-container" key = {rowIndex * 4 + columnIndex + 1}>
                   {(this.state.grid)[rowIndex][columnIndex] !== 0 &&
-                  <Tile text = {cell}/>}
+                  <Tile num = {cell}/>}
                   <div className = "cell"></div>
                 </div>
               ))}
@@ -209,3 +201,11 @@ export default class Game2048 extends React.Component {
   }
 }
 
+// todolists:
+// gameover处理
+// score
+// 优化getRandomNumer and four direction
+// 动画
+
+// bug：
+// gameover后仍变化
