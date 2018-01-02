@@ -76,7 +76,7 @@
         // 行注释位置（上面 ？后面）
         // "line-comment-position": 2,
         // 最深嵌套 4 层
-        "max-depth": [2, { "max": 4 }],
+        // "max-depth": [2, { "max": 4 }],
         // 最大行长
         "max-len": [2, {
             "code": 120,
@@ -92,7 +92,7 @@
         // 每行最大语句条数为 2
         "max-statements-per-line": [2, { "max": 2 }],
         // 函数最大语句条数
-        "max-statements": [1, { "max": 16 }],
+        // "max-statements": [1, { "max": 16 }],
         // 使用 new 实例化对象，类名大写字母开头
         "new-cap": 2,
         // 不使用 Array 构造函数

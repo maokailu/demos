@@ -1,7 +1,11 @@
 @import "../Adaptation/style.scss";
 
 .datePicker {
-  font-size: 20px;
+  @include font-dpr(20px);
+
+  select {
+    font-size: 20px;
+  }
 
   td {
     width: 1rem;
