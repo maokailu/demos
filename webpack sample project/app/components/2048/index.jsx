@@ -7,13 +7,14 @@ let startY = 0;
 let endX = 0;
 let endY = 0;
 let grid = null;
-// let distances = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+let gameOver = true;
+let score = 0;
+let bestScore = 0;
 export default class Game2048 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      grid: [],
-      gameOver: false
+      grid: []
     };
   }
 
@@ -21,25 +22,50 @@ export default class Game2048 extends React.Component {
     this.initialGrid();
   }
 
+  restart = () => {
+    score = 0;
+    this.initialGrid();
+  }
   initialGrid = () => {
     grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
-    // grid = [[0, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [44, 55, 60, 90]];
-    this.getRandomNum();
-    this.getRandomNum();
+    gameOver = false;
+    let cells1 = this.availableCells();
+    this.getRandomNum(cells1);
+    let cells2 = this.availableCells();
+    this.getRandomNum(cells2);
     this.setState({
       grid: grid
     });
   }
-  getRandomNum = () => {
-    // ?优化
-    let i = Math.floor(Math.random() * 4);
-    let j = Math.floor(Math.random() * 4);
-    if (grid[i][j] !== 0) {
-      this.getRandomNum();
-    } else {
-      let newTileText = Math.random() < 0.9 ? 2 : 2;
-      grid[i][j] = newTileText;
+  availableCells = () =>{
+    let cells = [];
+    grid.map((row, x) => {
+      row.map((cell, y) => {
+        if (!cell) {
+          cells.push({ x: x, y: y });
+        }
+      });
+    });
+    if (!cells.length) {
+      for (let i = 0 ;i < 4; i++) {
+        for (let j = 0;j < 4;j++) {
+          if ((j < 3 ? grid[i][j] === grid[i][j + 1] : false)
+                  || (j > 0 ? grid[i][j] === grid[i][j - 1] : false)
+                  || (i > 0 ? grid[i - 1][j] === grid[i][j] : false)
+                  || (i < 3 ? grid[i + 1][j] === grid[i][j] : false)) {
+            gameOver = false;
+          }
+        }
+      }
     }
+    return cells;
+  };
+  getRandomNum = cells => {
+    let i = Math.floor(Math.random() * cells.length);
+    let newTileText = Math.random() < 0.9 ? 2 : 2;
+    let x = cells[i].x;
+    let y = cells[i].y;
+    grid[x][y] = newTileText;
   }
   getDirection = (startX, startY, endX, endY) => {
     let moveX = endX - startX;
@@ -69,129 +95,152 @@ export default class Game2048 extends React.Component {
     endY = event.changedTouches[0].pageY;
     let direction = this.getDirection(startX, startY, endX, endY);
     this.caculateGird(direction);
-    this.getRandomNum();
-
-    // let gameOver = true;
-    // for (let i = 0 ;i < 4; i++) {
-    //   for (let j = 0;j < 4;j++) {
-    //     if (grid[i][j] === 0) {
-    //       gameOver = false;
-    //       this.getRandomNum();
-    //     } else if (grid[i][j] === grid[i][j + 1]
-    //       || grid[i][j] === grid[i][j - 1]
-    //       || grid[i - 1][j] === grid[i][j]
-    //       || grid[i + 1][j] === grid[i][j]) {
-    //       gameOver = false;
-    //     }
-    //     break;
-    //   }
-    // }
-    // if (gameOver) {
-    //   this.setState({
-    //     gameOver: true
-    //   });
-    // }
-  }
-  caculateGird = (direction) => {
-    // up
-    if (direction === 0) {
-      for (let i = 0 ;i < 4; i++) {
-        for (let j = 0;j < 4;j++) {
-          for (let k = j + 1 ;k < 4; k++) {
-            if (grid[k][i] === 0) {
-              continue;
-            }
-            if (grid[j][i] === 0) {
-              grid[j][i] = grid[k][i];
-              grid[k][i] = 0;
-            } else if (grid[j][i]  === grid[k][i]) {
-              grid[j][i] = grid[k][i] * 2;
-              grid[k][i] = 0;
-              break;
-            }
-          }
-        }
-      }
-    } else if (direction === 2) { // down
-      for (let i = 0 ;i < 4; i++) {
-        for (let j = 3;j >= 1;j--) {
-          for (let k = j - 1 ;k >= 0; k--) {
-            if (grid[k][i] === 0) {
-              continue;
-            }
-            if (grid[j][i] === 0) {
-              // // 获得当前ki的tile并将它移动到tileji
-              // let distance = j - k;
-              // distances[k][i] =  'Y-' + distance;
-              grid[j][i] = grid[k][i];
-              grid[k][i] = 0;
-            } else if (grid[j][i]  === grid[k][i]) {
-              grid[j][i] = grid[k][i] * 2;
-              grid[k][i] = 0;
-              break;
-            }
-          }
-        }
-      }
-    } else if (direction === 1) { // right
-      for (let i = 0 ;i < 4; i++) {
-        for (let j = 3;j >= 1;j--) {
-          for (let k = j - 1 ;k >= 0; k--) {
-            if (grid[i][k] === 0) {
-              continue;
-            }
-            if (grid[i][j] === 0) {
-              grid[i][j]  = grid[i][k];
-              grid[i][k] = 0;
-            } else if (grid[i][j]   === grid[i][k]) {
-              grid[i][j]  = grid[i][k] * 2;
-              grid[i][k] = 0;
-              break;
-            }
-          }
-        }
-      }
-    } else { // left
-      for (let i = 0 ;i < 4; i++) {
-        for (let j = 0;j < 4;j++) {
-          for (let k = j + 1 ;k < 4; k++) {
-            if (grid[i][k] === 0) {
-              continue;
-            }
-            if (grid[i][j] === 0) {
-              grid[i][j]  = grid[i][k];
-              grid[i][k] = 0;
-            } else if (grid[i][j]   === grid[i][k]) {
-              grid[i][j]  = grid[i][k] * 2;
-              grid[i][k] = 0;
-              break;
-            }
-          }
-        }
-      }
+    let cells = this.availableCells();
+    if (cells.length) {
+      this.getRandomNum(cells);
     }
     this.setState({
       grid: grid
     });
   }
+  caculateGird = (direction) => {
+    for (let i = 0 ;i < 4; i++) {
+      let j = 0;
+      let k = 0;
+      let condition1 = true;
+      let condition2 = true;
+      switch (direction) {
+      case 0:
+        j = 0;
+        k = 1;
+        break;
+      case 1:
+        j = 3;
+        k = 2;
+        break;
+      case 2:
+        j = 3;
+        k = 2;
+        break;
+      case 3:
+        j = 0;
+        k = 1;
+        break;
+      }
+      while (condition1) {
+        label1:while (condition2) {
+          switch (direction) {
+          case 0:
+            if (grid[j][i] === 0) {
+              grid[j][i] = grid[k][i];
+              grid[k][i] = 0;
+            } else if (grid[j][i] === grid[k][i]) {
+              grid[j][i] = grid[k][i] * 2;
+              grid[k][i] = 0;
+              score += grid[j][i];
+              break label1;
+            }
+            k++;
+            condition2 = k < 4;
+            break;
+          case 1 :
+            if (grid[i][j] === 0) {
+              grid[i][j] = grid[i][k];
+              grid[i][k] = 0;
+            } else if (grid[i][j] === grid[i][k]) {
+              grid[i][j] = grid[i][k] * 2;
+              grid[i][k] = 0;
+              score += grid[i][j];
+              break label1;
+            }
+            k--;
+            condition2 = k >= 0;
+            break;
+          case 2:
+            if (grid[j][i] === 0) {
+              grid[j][i] = grid[k][i];
+              grid[k][i] = 0;
+            } else if (grid[j][i] === grid[k][i]) {
+              grid[j][i] = grid[k][i] * 2;
+              grid[k][i] = 0;
+              score += grid[j][i];
+              break label1;
+            }
+            k--;
+            condition2 = k >= 0;
+            break;
+          case 3 :
+            if (grid[i][j] === 0) {
+              grid[i][j] = grid[i][k];
+              grid[i][k] = 0;
+            } else if (grid[i][j] === grid[i][k]) {
+              grid[i][j] = grid[i][k] * 2;
+              grid[i][k] = 0;
+              score += grid[i][j];
+              break label1;
+            }
+            k++;
+            condition2 = k < 4;
+            break;
+          }
+        }
+        switch (direction) {
+        case 0 :
+          j++;
+          k = j + 1;
+          condition1 = j < 3;
+          condition2 = k < 4;
+          break;
+        case 1 :
+          j--;
+          k = j - 1;
+          condition1 = j >= 1;
+          condition2 = k >= 0;
+          break;
+        case 2 :
+          j--;
+          k = j - 1;
+          condition1 = j >= 1;
+          condition2 = k >= 0;
+          break;
+        case 3 :
+          j++;
+          k = j + 1;
+          condition1 = j < 3;
+          condition2 = k < 4;
+          break;
+        }
+      }
+    }
+  }
   render() {
+    score > bestScore ? bestScore = score : bestScore;
     return (
-      <div className = "grid"
-        onTouchStart = {!this.state.gameOver ? this.touchStartHandler : null}
-        onTouchEnd = {!this.state.gameOver ? this.touchEndHandler : null}>
-        {this.state.grid.map((row, rowIndex) =>
-          <div className = "row" key={rowIndex}>
-            {
-              row.map((cell, columnIndex) =>(
-                <div  className = "tr-container" key = {rowIndex * 4 + columnIndex + 1}>
-                  {(this.state.grid)[rowIndex][columnIndex] !== 0 &&
-                  <Tile num = {cell}/>}
-                  <div className = "cell"></div>
-                </div>
-              ))}
+      <div className = "game-container">
+        {
+          <div className ="scores-container">
+            <div className ="score">Score: {score}</div>
+            <div className ="best-score">Best: {bestScore}</div>
+            <div className ="restart" onClick = {this.restart}>Restart</div>
           </div>
-        )}
-        {this.state.gameOver &&
+        }
+        <div className = "grid"
+          onTouchStart = {!this.state.gameOver ? this.touchStartHandler : null}
+          onTouchEnd = {!this.state.gameOver ? this.touchEndHandler : null}>
+          {this.state.grid.map((row, rowIndex) =>
+            <div className = "row" key={rowIndex}>
+              {
+                row.map((cell, columnIndex) =>(
+                  <div  className = "tr-container" key = {rowIndex * 4 + columnIndex + 1}>
+                    {(this.state.grid)[rowIndex][columnIndex] !== 0 &&
+                    <Tile num = {cell}/>}
+                    <div className = "cell"></div>
+                  </div>
+                ))}
+            </div>
+          )}
+        </div>
+        {gameOver &&
           <div className ="wrapper">
             <div className ="game-over">Game Over</div>
           </div>
@@ -202,10 +251,5 @@ export default class Game2048 extends React.Component {
 }
 
 // todolists:
-// gameover处理
-// score
-// 优化getRandomNumer and four direction
+// localstorage
 // 动画
-
-// bug：
-// gameover后仍变化
