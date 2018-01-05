@@ -1,6 +1,7 @@
 import React from 'react';
 import Day from './Day';
 import SelectOption from './SelectOption';
+import DateUtil from '../pub/Date.jsx';
 import '../Adaptation';
 import './style.scss';
 let date = new Date();
@@ -18,6 +19,10 @@ export default class Pagination extends React.Component {
     };
   }
 
+  componentDidMount() {
+    date = new Date() ;
+    DateUtil.isLeapYear(date);
+  }
   selectYear = event => {
     let value = parseInt(event.target.value);
     this.setState(prevState => ({
@@ -37,8 +42,6 @@ export default class Pagination extends React.Component {
           prevState.currentIndex - this.getFirstDay(prevState.currentmonth,  prevState.currentyear)
       };
     });
-  }
-  componentDidMount() {
   }
   getSizeOfMonth = (year, month) => {
     let sizeOfMonths = [31, 28, 31, 30, 31, 30, 31, 30, 31, 31, 30, 31];
@@ -86,22 +89,22 @@ export default class Pagination extends React.Component {
     let currentmonth = this.state.currentmonth;
     let currentyear = this.state.currentyear;
     let firstDayOfCurrentMonth = this.getFirstDay(currentmonth, currentyear);
-    let firstDayOfPrevMonth = this.getFirstDay(currentmonth - 1, currentyear);
-    let firstDayOfNextMonth = 0;
-    if (currentmonth === 11) {
-      firstDayOfNextMonth = this.getFirstDay(0, currentyear + 1);
-    } else {
-      firstDayOfNextMonth = this.getFirstDay(currentmonth + 1, currentyear);
-    }
+    let prevmonth = 0;
+    let nextmonth = 0;
+    prevmonth = currentmonth === 0 ? 11 : currentmonth - 1;
+    nextmonth = currentmonth === 11 ? 0 : currentmonth + 1;
+    let firstDayOfPrevMonth = this.getFirstDay(prevmonth, currentyear);
+    let firstDayOfNextMonth = this.getFirstDay(nextmonth, currentyear);
     let sizeOfCurrentMonth = this.getSizeOfMonth(currentyear, currentmonth);
-    let sizeOfPrevMonth = this.getSizeOfMonth(currentyear, currentmonth - 1);
+    let sizeOfPrevMonth = this.getSizeOfMonth(currentyear, prevmonth);
     this.setState({
       currentIndex: index
     });
     if (index < firstDayOfCurrentMonth) {
       this.setState(prevState => {
         return {
-          currentmonth: prevState.currentmonth - 1,
+          currentmonth: prevmonth,
+          currentyear: prevState.currentmonth === 0 ? prevState.currentyear - 1 : prevState.currentyear,
           currentIndex:
             index
             + sizeOfPrevMonth
@@ -111,7 +114,7 @@ export default class Pagination extends React.Component {
       });
     } else if (index >= firstDayOfCurrentMonth + sizeOfCurrentMonth) {
       this.setState(prevState => ({
-        currentmonth: prevState.currentmonth === 11 ? 0 : prevState.currentmonth + 1,
+        currentmonth: nextmonth,
         currentyear: prevState.currentmonth === 11 ? prevState.currentyear + 1 : prevState.currentyear,
         currentIndex:
           index - firstDayOfCurrentMonth
@@ -134,7 +137,7 @@ export default class Pagination extends React.Component {
           </select>
           <select value = {this.state.currentmonth} onChange={this.selectMonth}>
             {(new Array(12)).fill((new Date).getMonth()).map((month, index) =>
-              <SelectOption value = {month - index} text = {month - index + 1} key = {index} />
+              <SelectOption value = {index} text = {index + 1} key = {index} />
             )};
           </select>
         </div>

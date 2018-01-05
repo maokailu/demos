@@ -153,7 +153,7 @@ class Js extends React.Component {
       d: date.getDate(), // 日
       w: date.getDay(), // 周
       h: date.getHours(), // 小时
-      h: date.getMinutes(), // 分
+      m: date.getMinutes(), // 分
       s: date.getSeconds(), // 秒
       q: Math.floor((date.getMonth() + 3) / 3), // 季度
       S: date.getMilliseconds() // 毫秒
