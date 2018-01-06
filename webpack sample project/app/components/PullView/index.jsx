@@ -39,7 +39,7 @@ export default class PullView extends React.Component {
     //   });
     // }
 
-    Toast.show();
+    Toast.info();
   }
   getJSON = url => {
     const promise = new Promise((resolve, reject)=> {
