@@ -1,0 +1,35 @@
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  width: -webkit-fit-content;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 25px;
+  // width: 322px; // 默认宽度自适应内容， 设置宽度以换行显示
+  border-radius: 4px;
+  // font-family: PingFangSC-Medium;
+  // animation-name: moveOut;
+  // overflow: hidden;
+  // animation-duration: 2s;
+}
+
+@keyframes moveOut {
+  0% {
+    opacity: 1;
+    max-height: 150px;
+    padding: 10px 20px;
+  }
+
+  100% {
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+  }
+}
