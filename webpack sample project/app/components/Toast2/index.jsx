@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Icon from '../Loading';
+import Icon from '../Icon/Loading';
 import './style.scss';
 let width;
 let position;
@@ -17,7 +17,7 @@ let Toast = {
       this.setContent(content, type);
       clearTimeout(this.closeTimer);
     }
-    this.remove(duration);
+    // this.remove(duration);
   },
   remove(duration) {
     this.closeTimer = setTimeout(() => {
@@ -43,9 +43,9 @@ let Toast = {
           'right': position && position.right,
           'bottom': position && position.bottom,
           'left': position && position.left }}>
-        <div>icon {iconType}</div>
+        {/* <div>icon {iconType}</div> */}
         <Icon />
-        {content || defaultContent}
+        <span>{content || defaultContent}</span>
       </div>,
       container
     );
