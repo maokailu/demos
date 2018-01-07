@@ -21,16 +21,19 @@ let Toast = {
   },
   remove(duration) {
     this.closeTimer = setTimeout(() => {
-      this.getContainer();
+      this.close();
       this.closeTimer = null;
     }, duration || defaultDuration);
   },
   createDiv(content, type) {
-    container = document.createElement('div');
-    document.body.appendChild(container);
+    this.getContainer();
     this.setContent(content, type);
   },
   getContainer() {
+    container = container || document.createElement('div');
+    document.body.appendChild(container);
+  },
+  close() {
     ReactDOM.unmountComponentAtNode(container);
     document.body.removeChild(container);
   },

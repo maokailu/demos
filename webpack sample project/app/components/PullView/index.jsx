@@ -10,8 +10,7 @@ export default class PullView extends React.Component {
     this.state = {
       status: null,
       icon: null,
-      data: null,
-      statu: true
+      data: null
     };
     this.touchStartHandler = this.touchStartHandler.bind(this);
     this.touchMoveHandler = this.touchMoveHandler.bind(this);
@@ -129,9 +128,7 @@ export default class PullView extends React.Component {
       tip += index + ': ' + obj[index] + ';';
     }
     return (
-      <div onClick ={this.toast} style={{ 'position': 'absolute', 'top': '100px' }}>
-        {this.state.statu === true ? '关注' : '取消关注'}
-      </div>
+      <div onClick ={this.toast}>btn</div>
       // <div className="wrapper">
       //   <div
       //     className = "box"
