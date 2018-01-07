@@ -1,0 +1,139 @@
+@-webkit-keyframes sk-circleFadeDelay {
+  0%,
+  39%,
+  100% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes sk-circleFadeDelay {
+  0%,
+  39%,
+  100% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}
+
+@mixin pip {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  &::before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 25%;
+    background-color: #fff;
+    border-radius: 100%;
+    animation: sk-circleFadeDelay 0.8s infinite ease-in-out both;
+  }
+}
+
+.loading {
+  width: 50px;
+  height: 50px;
+  position: relative;
+
+  @for $i from 0 to 9 {
+    .pip#{$i} {
+      @include pip;
+      $transform: #{45 * $i}deg;
+
+      transform: rotate($transform);
+
+      &::before {
+        $animation-delay: $i/10 - 8/10;
+
+        animation-delay: #{$animation-delay}s;
+      }
+    }
+  }
+}
+
+.info,
+.error {
+  display: block;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  background: #fff;
+  border: 3px solid #333;
+  border-radius: 50px;
+
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 28px;
+    width: 4px;
+    background: #333;
+    border-radius: 10px;
+  }
+}
+
+.success::after,
+.success::before {
+  top: 6px;
+  left: 20px;
+  transform: rotate(45deg);
+  height: 28px;
+  width: 4px;
+}
+
+.success::before {
+  top: 18px;
+  left: 8px;
+  transform: rotate(-45deg);
+  height: 12px;
+}
+
+.error {
+  width: 32px;
+  height: 32px;
+  border: 4px solid #333;
+}
+
+.error::before,
+.error::after {
+  top: 12.5px;
+  left: 4px;
+  transform: rotate(-45deg);
+  height: 6px;
+  width: 24px;
+}
+
+.error::after {
+  transform: rotate(45deg);
+}
+
+.warning::before {
+  content: '!';
+  height: 0;
+  width: 0;
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  border: transparent solid;
+  border-bottom-color: #fff;
+  border-width: 0 20px 40px 20px;
+  color: #333;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 23px;
+  line-height: 50px;
+  text-indent: -4px;
+}

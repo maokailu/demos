@@ -12,10 +12,9 @@
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   font-size: 40px;
-  // width: 322px; // 默认宽度自适应内容， 设置宽度以换行显示
-  border-radius: 4px;
+  border-radius: 8px;
 
-  span {
+  .content {
     margin-left: 20px;
   }
 }

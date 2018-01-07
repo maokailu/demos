@@ -27,18 +27,6 @@ export default class PullView extends React.Component {
   componentDidMount() {
   }
   toast = () =>{
-    // if (this.state.statu === true)  {
-    //   Util.showToast('关注成功');
-    //   this.setState({
-    //     statu: true
-    //   });
-    // } else {
-    //   Util.showToast('qx关注成功');
-    //   this.setState({
-    //     statu: false
-    //   });
-    // }
-
     Toast.info();
   }
   getJSON = url => {
