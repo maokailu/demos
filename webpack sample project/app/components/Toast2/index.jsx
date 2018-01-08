@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Icon from '../Icon';
-import './style.scss';
+// import './style.scss';
 let width;
 let position;
 let container;
@@ -18,6 +18,7 @@ let Toast = {
       clearTimeout(this.closeTimer);
     }
     this.remove(duration);
+    return 3;
   },
   remove(duration) {
     this.closeTimer = setTimeout(() => {

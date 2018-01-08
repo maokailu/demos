@@ -13,30 +13,23 @@
   color: #fff;
   font-size: 30px;
   border-radius: 8px;
+  // animation-name: MoveOut;
+  // overflow: hidden;
+  // animation-duration: 0.3s;
 
   .content {
     margin-left: 20px;
   }
 }
 
-.moveoutAnimation {
-  animation-name: MoveOut;
-  overflow: hidden;
-  // animation-delay: 1.7s;
-  animation-duration: 0.3s;
-  color: yellow
-}
+// @keyframes MoveOut {
+//   0% {
+//     opacity: 1;
+//     padding: 20px;
+//   }
 
-@keyframes MoveOut {
-  0% {
-    opacity: 1;
-    padding: 20px;
-    color: #fff;
-  }
-
-  100% {
-    opacity: 0;
-    padding: 0;
-    color: red;
-  }
-}
+//   100% {
+//     opacity: 0;
+//     padding: 0;
+//   }
+// }
