@@ -1,12 +1,12 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Icon from '../Icon';
+import Icon from '../icon';
 // import './style.scss';
 let width;
 let position;
 let container;
-let defaultContent = 'This is a message';
+let defaultContent = 'This is text';
 let defaultDuration = 2000;
 let types = ['info',  'loading', 'success', 'error', 'warning'];
 let Toast = {
@@ -14,16 +14,14 @@ let Toast = {
     if (!this.closeTimer) {
       this.createDiv(content, type);
     } else {
-      this.setContent(content, type);
       clearTimeout(this.closeTimer);
+      this.setContent(content, type);
     }
     this.remove(duration);
-    return 3;
   },
   remove(duration) {
     this.closeTimer = setTimeout(() => {
       this.close();
-      this.closeTimer = null;
     }, duration || defaultDuration);
   },
   createDiv(content, type) {
@@ -35,8 +33,14 @@ let Toast = {
     document.body.appendChild(container);
   },
   close() {
+    if (!this.closeTimer) {
+      Toast.show('请先开启Toast');
+      return;
+    }
+    clearTimeout(this.closeTimer);
     ReactDOM.unmountComponentAtNode(container);
     document.body.removeChild(container);
+    this.closeTimer = null;
   },
   setContent(content, type) {
     let iconType = types[type];
@@ -72,7 +76,7 @@ export default {
     Toast.show(content, duration, 4);
   },
   close() {
-    Toast.remove();
+    Toast.close();
   },
   config(options) {
     if (!options.width) {

@@ -1,6 +1,6 @@
 import React from 'react';
 // import './style.scss';
-export default function Loading(props) {
+export default function Icon(props) {
   return (
     <div>
       {props.type === 'loading' && <div className = "loading">

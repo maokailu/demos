@@ -1,8 +1,5 @@
 import React from 'react';
-import './style.scss';
-import Loading from '../Loading';
-import Arrow from '../Arrow';
-import Pagination from '../Pagination';
+// import './style.scss';
 import Toast from '../Toast2';
 export default class PullView extends React.Component {
   constructor(props) {
@@ -128,7 +125,7 @@ export default class PullView extends React.Component {
       tip += index + ': ' + obj[index] + ';';
     }
     return (
-      <div onClick ={this.toast}>btn</div>
+      <div className="btn" onClick ={this.toast}>btn</div>
       // <div className="wrapper">
       //   <div
       //     className = "box"

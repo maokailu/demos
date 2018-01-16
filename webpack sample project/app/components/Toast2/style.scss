@@ -7,29 +7,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 13px;
   width: -webkit-fit-content;
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
-  font-size: 30px;
-  border-radius: 8px;
-  // animation-name: MoveOut;
-  // overflow: hidden;
-  // animation-duration: 0.3s;
+  font-size: 35px;
+  border-radius: 4px;
 
   .content {
-    margin-left: 20px;
+    margin-left: 8px;
   }
 }
-
-// @keyframes MoveOut {
-//   0% {
-//     opacity: 1;
-//     padding: 20px;
-//   }
-
-//   100% {
-//     opacity: 0;
-//     padding: 0;
-//   }
-// }
