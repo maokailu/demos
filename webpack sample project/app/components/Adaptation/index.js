@@ -7,7 +7,7 @@
   function setScale() {
     var scale;
     if (!dpr && !scale) {
-      var isAndroid = window.navigator.appVersion.match(/android/gi);
+      // var isAndroid = window.navigator.appVersion.match(/android/gi);
       var isIPhone = window.navigator.appVersion.match(/iphone/gi);
       var devicePixelRatio = window.devicePixelRatio;
       if (isIPhone) {
@@ -26,7 +26,10 @@
     }
     var metaEl = document.createElement('meta');
     metaEl.setAttribute('name', 'viewport');
-    metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+    metaEl.setAttribute('content', 'initial-scale=' + scale +
+    ', maximum-scale=' + scale +
+    ', minimum-scale=' + scale +
+    ', user-scalable=no');
     if (docEl.firstElementChild) {
       docEl.firstElementChild.appendChild(metaEl);
     } else {

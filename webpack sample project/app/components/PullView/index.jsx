@@ -1,6 +1,8 @@
 import React from 'react';
-// import './style.scss';
-import Toast from '../Toast2';
+import './style.scss';
+import Pagination from '../Pagination';
+import Arrow from '../Arrow';
+import Loading from '../Loading';
 export default class PullView extends React.Component {
   constructor(props) {
     super(props);
@@ -20,11 +22,6 @@ export default class PullView extends React.Component {
   moveY = 0; // 滑动时的坐标
   Y = 0; // 滑动向量
 
-  componentDidMount() {
-  }
-  toast = () =>{
-    Toast.info();
-  }
   getJSON = url => {
     const promise = new Promise((resolve, reject)=> {
       const handler = function() {
@@ -119,46 +116,45 @@ export default class PullView extends React.Component {
     }
   }
   render() {
-    let tip = '';
+    var tip;
     const obj = this.state.data;
     for (let index in obj) {
       tip += index + ': ' + obj[index] + ';';
     }
     return (
-      <div className="btn" onClick ={this.toast}>btn</div>
-      // <div className="wrapper">
-      //   <div
-      //     className = "box"
-      //     onTouchStart={(e) => this.touchStartHandler(e)}
-      //     onTouchMove={(e) => this.touchMoveHandler(e)}
-      //     onTouchEnd = {(e) => this.touchEndHandler(e)}
-      //   >
-      //     <div className="header">
-      //       {this.state.icon === this.icons[0]  &&
-      //                     <Arrow arrow_direction_type = {this.icons[0]} />
-      //       }
-      //       {this.state.icon === this.icons[1] &&
-      //                     <Arrow arrow_direction_type = {this.icons[1]} />
-      //       }
-      //       {this.state.icon === this.icons[2] &&
-      //                     <Loading />
-      //       }
-      //       {
-      //         this.state.icon === this.icons[3] &&
-      //                     <span className={this.icons[3]}></span>
-      //       }
-      //       {
-      //         this.state.icon === this.icons[4] &&
-      //                         <div className={this.icons[4]}></div>
-      //       }
-      //       {this.state.status}
-      //     </div>
-      //     <div className="main">
-      //       {/* {tip || '下拉获取http://freegeoip.net/json的数据' } */}
-      //       <Pagination />
-      //     </div>
-      //   </div>
-      // </div>
+      <div className="wrapper">
+        <div
+          className = "box"
+          onTouchStart={(e) => this.touchStartHandler(e)}
+          onTouchMove={(e) => this.touchMoveHandler(e)}
+          onTouchEnd = {(e) => this.touchEndHandler(e)}
+        >
+          <div className="header">
+            {this.state.icon === this.icons[0]  &&
+              <Arrow arrow_direction_type = {this.icons[0]} />
+            }
+            {this.state.icon === this.icons[1] &&
+              <Arrow arrow_direction_type = {this.icons[1]} />
+            }
+            {this.state.icon === this.icons[2] &&
+              <Loading />
+            }
+            {
+              this.state.icon === this.icons[3] &&
+                <span className={this.icons[3]}></span>
+            }
+            {
+              this.state.icon === this.icons[4] &&
+                              <div className={this.icons[4]}></div>
+            }
+            {this.state.status}
+          </div>
+          <div className="main">
+            {/* {tip || '下拉获取http://freegeoip.net/json的数据' } */}
+            <Pagination />
+          </div>
+        </div>
+      </div>
     );
   }
 }
