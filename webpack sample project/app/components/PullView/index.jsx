@@ -116,11 +116,11 @@ export default class PullView extends React.Component {
     }
   }
   render() {
-    var tip;
-    const obj = this.state.data;
-    for (let index in obj) {
-      tip += index + ': ' + obj[index] + ';';
-    }
+    // var tip;
+    // const obj = this.state.data;
+    // for (let index in obj) {
+    //   tip += index + ': ' + obj[index] + ';';
+    // }
     return (
       <div className="wrapper">
         <div

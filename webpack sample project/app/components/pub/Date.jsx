@@ -10,7 +10,8 @@ const DateUtil = {
     US: {
       dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       shortDayNames: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+        'October', 'November', 'December'],
       shortMonthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     }
   },
@@ -40,7 +41,7 @@ const DateUtil = {
     }
     for (var k in o) {
       if (new RegExp('(' + k + ')').test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
       }
     }
     return fmt;
@@ -109,7 +110,7 @@ const DateUtil = {
     }
   },
   addDay(date, dayNum) {
-    if (this.isNotEmpty(date) && this.isNotEmpty(dayNum) && date instanceof Date && typeof dayNum == 'number') {
+    if (this.isNotEmpty(date) && this.isNotEmpty(dayNum) && date instanceof Date && typeof dayNum === 'number') {
       date.setDate(date.getDate() + dayNum);
     } else {
       console.warn('date or dayNum format wrong');
@@ -118,7 +119,7 @@ const DateUtil = {
   },
   addDayStr(dateStr, dayNum) {
     var date = '';
-    if (this.isNotEmpty(dateStr) && this.isNotEmpty(dayNum) && typeof dayNum == 'number') {
+    if (this.isNotEmpty(dateStr) && this.isNotEmpty(dayNum) && typeof dayNum === 'number') {
       date = this.formatToDate(dateStr);
       date.setDate(date.getDate() + dayNum);
     } else {
@@ -127,7 +128,7 @@ const DateUtil = {
     return date;
   },
   addMonth(date, monthNum) {
-    if (this.isNotEmpty(date) && this.isNotEmpty(monthNum) && date instanceof Date && typeof monthNum == 'number') {
+    if (this.isNotEmpty(date) && this.isNotEmpty(monthNum) && date instanceof Date && typeof monthNum === 'number') {
       date.setMonth(date.getMonth() + monthNum);
     } else {
       console.warn('date or monthNum format wrong');
@@ -136,7 +137,7 @@ const DateUtil = {
   },
   addMonthStr(dateStr, monthNum) {
     var date = '';
-    if (this.isNotEmpty(dateStr) && this.isNotEmpty(monthNum) && typeof monthNum == 'number') {
+    if (this.isNotEmpty(dateStr) && this.isNotEmpty(monthNum) && typeof monthNum === 'number') {
       date = this.formatToDate(dateStr);
       date.setMonth(date.getMonth() + monthNum);
     } else {
@@ -145,7 +146,7 @@ const DateUtil = {
     return date;
   },
   addYear(date, yearNum) {
-    if (this.isNotEmpty(date) && this.isNotEmpty(yearNum) && date instanceof Date && typeof yearNum == 'number') {
+    if (this.isNotEmpty(date) && this.isNotEmpty(yearNum) && date instanceof Date && typeof yearNum === 'number') {
       date.setYear(date.getFullYear() + yearNum);
     } else {
       console.warn('date or yearNum format wrong');
@@ -154,7 +155,7 @@ const DateUtil = {
   },
   addYearStr(dateStr, yearNum) {
     var date = '';
-    if (this.isNotEmpty(dateStr) && this.isNotEmpty(yearNum) && typeof yearNum == 'number') {
+    if (this.isNotEmpty(dateStr) && this.isNotEmpty(yearNum) && typeof yearNum === 'number') {
       date = this.formatToDate(dateStr);
       date.setYear(date.getFullYear() + yearNum);
     } else {

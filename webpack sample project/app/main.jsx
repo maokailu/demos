@@ -2,8 +2,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import './components/Adaptation';
 import './main.scss';
-import Home from './components/ReactRouter/router1';
+import Toast from './components/Toast';
 render(
-  <Home />,
+  // <Home />,
+  <div onClick={()=>Toast.info()}>ffddsdds</div>,
   document.getElementById('root')
 );

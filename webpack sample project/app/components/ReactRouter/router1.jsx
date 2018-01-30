@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 
 import PullView from '../PullView';
-import DatePicker from '../DatePicker';
 
 
 const App = () => (
@@ -17,7 +16,7 @@ const App = () => (
       <li><Link to="/pullView">PullView</Link></li>
     </ul>
   </div>
-)
+);
 
 const Home = () => (
   <Router>
@@ -26,6 +25,7 @@ const Home = () => (
       <Route path="/pullView" component={PullView} />
     </Switch>
   </Router>
-)
+);
 
 export default Home
+;
