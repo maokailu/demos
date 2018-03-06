@@ -17,7 +17,7 @@
                 4）另外一种情况是，我们想把文件从 Git 仓库中删除（亦即从暂存区域移除，但仍然希望保留在当前工作目录中。为达到这一目的，使用 --cached 选项：$ git rm --cached README
     9.移动文件   
                 $ git mv file_from file_to
-
+    
                 运行 git mv 就相当于运行了下面三条命令：
                 $ mv README.md README
                 $ git rm README.md
@@ -91,3 +91,14 @@
             删除远程分支
                 如果想要从服务器上删除 serverfix 分支，运行下面的命令：
                     $ git push origin --delete serverfix
+                    
+四.工作流程
+    1.基本工作流程：
+        1.从远程仓库克隆 git clone
+        2.追踪 git add 
+        跳过暂存并提交到本地仓库 git commit -a
+        3.推送到远程仓库:
+                git push [remote-name] [branch-name]
+        4.从远程仓库获取并合并 git pull
+    2.解决冲突
+    3.重置
