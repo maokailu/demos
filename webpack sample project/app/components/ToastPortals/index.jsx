@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './style.scss';
 
 const appRoot = document.getElementById('app-root');
-const modalRoot = document.getElementById('modal-root'); // 容纳整个弹出层，与app层平行
+const modalRoot = document.getElementById('modal-root');
 
 class Modal extends React.Component {
   constructor(props) {
@@ -29,34 +29,54 @@ class Modal extends React.Component {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showModal: false };
-    
+    this.state = {
+      showModal: false,
+      text: this.props.text,
+      time: this.props.time
+    };
+
     this.handleShow = this.handleShow.bind(this);
     this.handleHide = this.handleHide.bind(this);
   }
 
-  handleShow() {
-    this.setState({ showModal: true });
+  handleShow(e) {
+    e.stopPropagation();
+    if (!this.closeTimer) {
+      this.setState({ showModal: true });
+    } else {
+      clearTimeout(this.closeTimer);
+    }
+    this.closeTimer = setTimeout(() => {
+      this.handleHide();
+    }, this.state.time);
   }
-  
+
   handleHide() {
+    if (!this.closeTimer) {
+      // 使用者未开启Toast而直接调用该方法时的提示
+      this.setState({
+        text: '请先开启Toast'
+      });
+      return;
+    }
     this.setState({ showModal: false });
+    this.closeTimer = null;
   }
 
   render() {
     const modal = this.state.showModal ? (
-      // Layer,将渲染到父元素app-root外与app-root平行的元素modal-root中，但在app中通过showModel控制Moal是否渲染。
       <Modal>
         <div className="modal">
-          <button onClick={this.handleHide}>Hide modal</button>
+          <div>this is the toast text</div>
         </div>
       </Modal>
     ) : null;
 
     return (
+      // click the page to hide the toast
       <div className="app">
-        This div has overflow: hidden.
-        <button onClick={this.handleShow}>Show modal</button>
+        Click the button to show the toast
+        <button onClick={this.handleShow}>{this.state.text}</button>
         {modal}
       </div>
     );
