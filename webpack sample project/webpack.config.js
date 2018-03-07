@@ -18,7 +18,7 @@ module.exports = {
     inline: true, // 实时刷新
     hot: true,
     // host: '192.168.1.104',
-    // port: 8090
+    port: 9090
   },
   module: {
     rules: [
