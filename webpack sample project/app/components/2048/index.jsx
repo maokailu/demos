@@ -103,6 +103,7 @@ export default class Game2048 extends React.Component {
       grid: grid
     });
   }
+  // 1.执行多次崩溃 2.逻辑优化代码优化
   caculateGird = (direction) => {
     for (let i = 0 ;i < 4; i++) {
       let j = 0;

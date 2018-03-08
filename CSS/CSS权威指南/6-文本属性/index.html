@@ -15,7 +15,7 @@
         <p class="cl1">A line box containing some text and elements.</p>
         备注：检查元素显示的是行框，在谷歌浏览器默认为font-size的1.3倍。内容区+行间距=行内框。
         <h4>行内元素</h4>
-        <span style="line-height: 70px; background: orange">检查行内元素显示内容区</span>
+        <span style="line-height: 70px; background: orange">检查行内元素显示内容区(只是需要注意此时line-height仍然有作用不要被检查显示的高度误导)</span>
         <div>
             <span style="line-height: 70px; background: orange">检查行内元素的父元素可观察到整个行框</span>
         </div>
@@ -55,3 +55,4 @@
         <p>This paragraph contains <span class="middle">middle</span> text.</p>
     </body>
 </html>
+<!-- 文本外选择span元素包裹，检查时显示的高度是内容框背景色也只应用到内容框，但实际上Line-height是起作用的。高度利用视觉稿font-size和line-height,宽度自适应不受视觉稿限制 -->

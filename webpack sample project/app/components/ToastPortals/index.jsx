@@ -74,9 +74,11 @@ class App extends React.Component {
 
     return (
       // click the page to hide the toast
-      <div className="app">
-        Click the button to show the toast
-        <button onClick={this.handleShow}>{this.state.text}</button>
+      <div className="app" style={{ width: '100vw' }}>
+        <span style={{ fontSize: '24px', lineHeight: '30px', background: 'white' }}>Click the button to show the toasts</span><br/>
+        <span style={{ fontSize: '40px', lineHeight: '48px' }}>20:30</span><br/>
+        <span style={{ fontSize: '24px', lineHeight: '30px' }}>PVG</span>
+        {/* <button onClick={this.handleShow}>{this.state.text}</button> */}
         {modal}
       </div>
     );

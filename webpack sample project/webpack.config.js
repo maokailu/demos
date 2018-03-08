@@ -18,7 +18,8 @@ module.exports = {
     inline: true, // 实时刷新
     hot: true,
     // host: '192.168.1.104',
-    port: 9090
+    host: '10.32.84.16',
+    port: 5389
   },
   module: {
     rules: [
@@ -26,7 +27,7 @@ module.exports = {
         test: /(\.jsx|\.js)$/,
         use: [
           { loader: 'babel-loader' },
-          { loader: 'eslint-loader' },
+          { loader: 'eslint-loader' }
         ],
         exclude: /node_modules/
       },
