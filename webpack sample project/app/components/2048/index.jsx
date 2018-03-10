@@ -103,7 +103,8 @@ export default class Game2048 extends React.Component {
       grid: grid
     });
   }
-  // 1.执行多次崩溃 2.逻辑优化代码优化 3.将04改为变量 不一定是4*4的表格
+  // 1.执行多次崩溃 2.逻辑优化代码优化 3.将04改为变量 不一定是4*4的表格 
+  // work-flow-feature-branch-test
   caculateGird = (direction) => {
     for (let i = 0 ;i < 4; i++) {
       let j = 0;
