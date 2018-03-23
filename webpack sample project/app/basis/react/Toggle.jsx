@@ -59,4 +59,4 @@ export default class Toggle extends React.Component {
   }
 }
 
-// 获得当前类通过this, 获得事件元素通过e
+// 获得当前类通过this, 获得事件元素通过e(不需传递)

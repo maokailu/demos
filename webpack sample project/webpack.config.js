@@ -18,8 +18,8 @@ module.exports = {
     inline: true, // 实时刷新
     // hot: true,
     // host: '192.168.1.104',
-    // host: '10.32.84.16',
-    // port: 5389
+    host: '10.32.84.16',
+    port: 5389
   },
   module: {
     rules: [

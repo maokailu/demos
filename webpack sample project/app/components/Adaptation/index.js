@@ -22,6 +22,8 @@
       } else {
         dpr = 1;
       }
+      // 令页面宽375
+      dpr = 1;
       scale = 1 / dpr;
     }
     var metaEl = document.createElement('meta');
