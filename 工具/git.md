@@ -1,4 +1,4 @@
-
+﻿
 二.git基础
     1.工作区（本地git仓库某次快照） 暂存区(添加内容到下次提交中) 本地git仓库
                     git add(暂存或者追踪)         git commit(提交)
@@ -91,6 +91,7 @@
             删除远程分支
                 如果想要从服务器上删除 serverfix 分支，运行下面的命令：
                     $ git push origin --delete serverfix
+     3.6 rebase变基
                     
 四.工作流程
     1.基本工作流程：
