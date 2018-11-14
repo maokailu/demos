@@ -19,6 +19,9 @@ function start(response) {
     '</body>'+
     '</html>';
 
+    // 因为Node中js单线程的缘故，正在执行的请求处理程序将阻塞下一个请求处理程序，因此如果有耗时任务需要使用异步函数
+    // 如果在异步函数后使用return进行响应并通过一层层传递结果的方式，将得到错误结果，因为此时异步函数还未执行完
+    // 使用异步函数时，要得到正确结果需要在其回调函数中进行响应。我们的处理程序函数需要一层层接收response参数，为了对请求作出直接的响应。
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
     response.end();
