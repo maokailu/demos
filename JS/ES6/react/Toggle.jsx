@@ -11,7 +11,7 @@ export default class Toggle extends React.Component {
   // 类的方法默认是不会绑定 this 的。这并不是 React 的特殊行为；它是函数如何在 JavaScript 中运行的一部分。
   // 根据this规则，在此回调函数中this丢失了隐式绑定（严格模式）,所以采用默认绑定到undefined
   // 方法一：绑定 this.handleClick 并把它传入 onClick；
-  // 方法二： 在回调函数中使用箭头函数(函数就不会被作为参数赋值从而丢失绑定，但每次渲染都要创建一个不同的回调函数，可能影响性能）；
+  // 方法二：在回调函数中使用箭头函数(函数就不会被作为参数赋值从而丢失绑定，但每次渲染都要创建一个不同的回调函数，可能影响性能）；
   // 方法三：使用属性初始化器语法
   handleClick1() { // 事件对象要放在最后
     console.log('handleClick1"s this:', this);
